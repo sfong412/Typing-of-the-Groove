@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763176, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
 --- !u!224 &202440163 stripped
@@ -379,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763176, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_Name
-      value: Button (1)
+      value: Kim Petras - Heart to Break (Button)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
@@ -554,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae0e93ee83f5d24d927f13731939cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  songData: {fileID: 0}
   MenuPanel: {fileID: 1215633397}
   SongSelectPanel: {fileID: 1160892827}
   Conductor: {fileID: 0}
@@ -583,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7588f1054358c043802a7669cc88cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: f64fb688403eb3444a098c1ac50a2576, type: 3}
+  jsonFile: 
   jsonString: 
   fileName: 
   title: 
@@ -593,6 +598,16 @@ MonoBehaviour:
   year: 0
   bpm: 0
   beats: 0
+  song:
+    fileName: 
+    title: 
+    artist: 
+    album: 
+    genre: 
+    year: 0
+    bpm: 0
+    beats: 0
+  songPath: 
 --- !u!1 &1008707565
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7588f1054358c043802a7669cc88cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: f64fb688403eb3444a098c1ac50a2576, type: 3}
+  jsonFile: 
   jsonString: 
   fileName: 
   title: 
@@ -948,6 +963,16 @@ MonoBehaviour:
   year: 0
   bpm: 0
   beats: 0
+  song:
+    fileName: 
+    title: 
+    artist: 
+    album: 
+    genre: 
+    year: 0
+    bpm: 0
+    beats: 0
+  songPath: 
 --- !u!1 &2114740512
 GameObject:
   m_ObjectHideFlags: 0
