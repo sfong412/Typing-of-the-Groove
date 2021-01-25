@@ -38,8 +38,9 @@ public class PlayerInput : MonoBehaviour
         400,
         800,
         1600,
-        3200,
-        6400
+        3200, //cool
+        6400, //chillin'
+        128000 //freeze!
     };
 
     //Keeps track of failed button inputs in a beat
@@ -53,12 +54,18 @@ public class PlayerInput : MonoBehaviour
 
     public hitStatus myHitStatus;
 
+    public GameplayUI ui;
+
+  //  public WordManager wordManager;
+
     // Start is called before the first frame update
     void Start()
     {
         conductor = GameObject.Find("Conductor").GetComponent<Conductor>();
 
         gameplayManager = GameObject.Find("Gameplay Manager").GetComponent<GameplayManager>();
+
+        ui = GameObject.Find("UI Manager").GetComponent<GameplayUI>();
 
         setHitRange();
         myHitStatus = hitStatus.hitNotDone;
@@ -77,6 +84,12 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         DetectHit();
+/*
+        foreach (char letter in Input.inputString)
+        {
+            wordManager.typeLetter(letter);
+           // Debug.Log(letter);
+        }*/
     }
 
     void DetectHit() 
@@ -127,8 +140,12 @@ public class PlayerInput : MonoBehaviour
         myHitStatus = hitStatus.hitNotDone;
         failCounter = 0;
         comboCounter = comboCounter + 1;
-        //comboScoreUp(P1Score, scoreBasedOnCombo, comboCounter);
-        score = score + scoreBasedOnCombo[comboCounter];
+        score = score + scoreBasedOnCombo[comboCounter];    
+        if (comboCounter == 8) 
+        {
+            comboCounter = 1;
+        }   
+        ui.SendMessage("onHitSuccess");
         return;
     }
 
@@ -137,6 +154,7 @@ public class PlayerInput : MonoBehaviour
         myHitStatus = hitStatus.hitNotDone;
         failCounter = 0;
         comboCounter = 1;
+        ui.SendMessage("onHitFail");
         return;
     }
 

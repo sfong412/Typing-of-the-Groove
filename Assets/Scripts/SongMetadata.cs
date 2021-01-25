@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SongMetadata : MonoBehaviour
 {
+    Menu menu;
+    
     //JSON object
     public string jsonFile;
 
@@ -62,8 +64,10 @@ public class SongMetadata : MonoBehaviour
     public void ReadSongJSON()
     {
         jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
+        //jsonFile = menu.jsonFile;
         jsonString = File.ReadAllText(jsonFile);
         song = JsonUtility.FromJson<SongInfo>(jsonString);
+        Debug.Log(jsonFile);
     }
 
     public void UpdateSongInfo()

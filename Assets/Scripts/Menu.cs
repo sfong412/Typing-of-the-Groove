@@ -13,6 +13,9 @@ public class Menu : MonoBehaviour
 
     public GameObject Conductor;
 
+    //location of song's jsonFile metadata
+    public string jsonFile;
+
    // public SongInfo song;
 
     // Start is called before the first frame update
@@ -51,5 +54,6 @@ public class Menu : MonoBehaviour
         SongSelectPanel.SetActive(false);
         SceneManager.LoadScene(sceneName);
         Debug.Log("Now loading " + sceneName);
+        jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
     }
 }

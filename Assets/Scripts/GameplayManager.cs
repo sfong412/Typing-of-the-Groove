@@ -72,6 +72,13 @@ public class GameplayManager : MonoBehaviour
             hitNotDone
         }
 */
+
+    private int[] numberOfPlayers =
+    {
+        1,
+        2
+    };
+
     //Keep track of scores for P1 and P2
     public float P1Score;
     public float P2Score;
@@ -118,6 +125,8 @@ public class GameplayManager : MonoBehaviour
     public PlayerInput p2;
 
     public hitStatus myHitStatus;
+
+    //public List<Word> words;
 
     // Start is called before the first frame update
     void Start()
@@ -284,9 +293,17 @@ public class GameplayManager : MonoBehaviour
     {
         myHitStatus = hitStatus.hitNotDone;
         failCounter = 0;
-        comboCounter = comboCounter + 1;
-        //comboScoreUp(P1Score, scoreBasedOnCombo, comboCounter);
-        P1Score = P1Score + scoreBasedOnCombo[comboCounter];
+
+        if (comboCounter > 7) 
+            {
+                comboCounter = 1;
+            }
+        else 
+            {
+                comboCounter = comboCounter + 1;
+                //comboScoreUp(P1Score, scoreBasedOnCombo, comboCounter);
+                P1Score = P1Score + scoreBasedOnCombo[comboCounter];
+            }
         return;
     }
 
@@ -296,6 +313,11 @@ public class GameplayManager : MonoBehaviour
         failCounter = 0;
         comboCounter = 1;
         return;
+    }
+
+    void checkNumberOfPlayers(int players) 
+    {
+        
     }
 
     public hitStatus GetHitStatus()

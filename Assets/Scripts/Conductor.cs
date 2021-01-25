@@ -52,6 +52,8 @@ public class Conductor : MonoBehaviour
 
     public PlayerInput p2;
 
+    public WordManager wordManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,8 @@ public class Conductor : MonoBehaviour
         //Get player inputs
         p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
         p2 = GameObject.Find("Player 2").GetComponent<PlayerInput>();
+
+        wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
 
         //Calculate the number of seconds in each beat
         Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
@@ -91,6 +95,7 @@ public class Conductor : MonoBehaviour
             completedLoops++;
             p1.SendMessage("onFinishLoop");
             p2.SendMessage("onFinishLoop");
+            wordManager.SendMessage("addWord");
         }
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
