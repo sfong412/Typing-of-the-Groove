@@ -56,6 +56,12 @@ public class PlayerInput : MonoBehaviour
 
     public GameplayUI ui;
 
+    public WordManager wordManager;
+
+    public WordGenerator letterGenerator;
+
+    char beatLetter;
+
   //  public WordManager wordManager;
 
     // Start is called before the first frame update
@@ -78,39 +84,61 @@ public class PlayerInput : MonoBehaviour
         comboCounter = 1;
         failCounter = 0;
         isCombo = false;
+
+        beatLetter = '\n';
     }
 
     // Update is called once per frame
     void Update()
     {
-        DetectHit();
-/*
         foreach (char letter in Input.inputString)
         {
+            DetectHit(letter);
+          //  Debug.Log(LetterGenerator.getRandomLetter());
             wordManager.typeLetter(letter);
            // Debug.Log(letter);
-        }*/
+        }
     }
 
-    void DetectHit() 
+    void OnGUI() 
     {
-        //if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyUp(KeyCode.W)))
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
+    }
+
+    void DetectHit(char c) 
+    {
+        //Event e = Event.current;
+
+        //string k = e.keyCode.ToString();
+
+        //!== add fail detection for other keys on the keyboard
+        //if (Input.GetKeyDown(KeyCode.Return)) -- OLD
+
+      //  foreach (char c in Input.inputString)
+      //  {
+            Debug.Log(beatLetter);
+            if (c == beatLetter && conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
                 {   
                     myHitStatus = hitStatus.hitPass;
-                } else if (myHitStatus != hitStatus.hitPass)
+                } 
+                else if (myHitStatus != hitStatus.hitPass)
                 {
                     if (failCounter < 5)
                     {
-                        failCounter = failCounter + 1;
+                        //failCounter = failCounter + 1;
                     }
                     if (failCounter == 5)
                     {
-                        myHitStatus = hitStatus.hitFail;
+                       // myHitStatus = hitStatus.hitFail;
                     }
                 }
+    }
+
+    void hitFail() {
+        failCounter = failCounter + 1;
+
+        if (failCounter == 5)
+        {
+            myHitStatus = hitStatus.hitFail;
         }
     }
 
@@ -156,6 +184,11 @@ public class PlayerInput : MonoBehaviour
         comboCounter = 1;
         ui.SendMessage("onHitFail");
         return;
+    }
+
+    public void setLetter(char letter)
+    {
+        beatLetter = letter;
     }
 
     public hitStatus GetHitStatus()

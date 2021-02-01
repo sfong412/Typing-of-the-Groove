@@ -65,7 +65,7 @@ public class Conductor : MonoBehaviour
 
         //Get player inputs
         p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
-        p2 = GameObject.Find("Player 2").GetComponent<PlayerInput>();
+        //p2 = GameObject.Find("Player 2").GetComponent<PlayerInput>();
 
         wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
 
@@ -94,7 +94,7 @@ public class Conductor : MonoBehaviour
         {
             completedLoops++;
             p1.SendMessage("onFinishLoop");
-            p2.SendMessage("onFinishLoop");
+          //  p2.SendMessage("onFinishLoop");
             wordManager.SendMessage("addWord");
         }
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;

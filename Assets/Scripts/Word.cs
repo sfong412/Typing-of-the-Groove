@@ -8,16 +8,27 @@ public class Word : MonoBehaviour
     public string word;
     private int typeIndex;
 
+    public char letter;
+
     GameplayUI display;
 
-    public Word(string _word, GameplayUI _display)
+    PlayerInput letterInput;
+
+    public Word(string _word, char _letter, GameplayUI _display, PlayerInput _letterInput)
     //public Word(string _word)
     {
         word = _word;
         typeIndex = 0;
 
         display = _display;
+        letter = _letter;
+
+        letterInput = _letterInput;
+
         display.setWord(word);
+        display.setLetter(letter);
+
+        letterInput.setLetter(letter);
     }
 
     public char getNextLetter()

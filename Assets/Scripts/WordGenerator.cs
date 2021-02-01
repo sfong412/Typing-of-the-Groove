@@ -5,9 +5,11 @@ using UnityEngine;
 public class WordGenerator : MonoBehaviour
 {
     
+    // !-- find a way to skip spaces in strings
+    // !-- add difficulty scaling to wordList
     private static string[] wordList = 
     {
-        "bob", "jones", "capussi", "please", "eggs", "stealing", "phobias", "does space work in here"
+        "bob", "jones", "capussi", "please", "eggs", "stealing", "phobias", "space", "monster", "ending", "kirby", "robotron", "fever", "dancing", "totally", "limo", "flat", "earth", "conspiracy", "dog", "cat", "attach", "screw", "manager", "wall", "democrat", "republican", "dictionary", "dedede", "the", "essay", "bogus", "nauseous", "conscientious", "paraphernalia", "onomatopoeia", "croc", "doki", "sugoi", "family", "western", "romance", "genres", "bot", "cheese", "milk", "meat", "vegan", "operation", "tempo", "alphabet", "bees", "eating", "wagon", "mushroom", "hundred", "sodium", "calcium", "instrument", "fast", "irony", "guitar", "mafia", "yakuza", "spoilers", "spills", "random", "typing", "texting", "roster", "racing", "quiet", "controller", "confusion"
     };
 
     public static string getRandomWord() 
@@ -17,16 +19,4 @@ public class WordGenerator : MonoBehaviour
 
         return randomWord;
     }
-    /*
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

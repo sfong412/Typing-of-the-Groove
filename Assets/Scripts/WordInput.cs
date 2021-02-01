@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WordInput : MonoBehaviour
 {
-
+/*
     public WordManager wordManager;
 
     // Start is called before the first frame update
@@ -21,5 +21,5 @@ public class WordInput : MonoBehaviour
             wordManager.typeLetter(letter);
            // Debug.Log(letter);
         }
-    }
+    }*/
 }

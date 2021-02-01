@@ -23,9 +23,10 @@ public class GameplayUI : MonoBehaviour
     public Text p2ScoreUI;
 
     public Image p1GrooveUI;
-    public Image p2GrooveUI;
+    public Image p1GrooveHitUI;
 
     public Text p1GrooveText;
+    public Text p1GrooveHitText;
 
     private Color onBeat;
     private Color offBeat;
@@ -63,11 +64,12 @@ public class GameplayUI : MonoBehaviour
 
         //Call the image attached to the game object
         p1GrooveUI = GameObject.Find("P1 Groovetron").GetComponent<Image>();
-        //p2GrooveUI = GameObject.Find("P2 Groovetron").GetComponent<Image>();
+        p1GrooveHitUI = GameObject.Find("P1 Groovetron On Hit").GetComponent<Image>();
 
-        p1GrooveText = GameObject.Find("P1 Groovetron Score").GetComponent<Text>();
+        p1GrooveText = GameObject.Find("P1 Groovetron Text").GetComponent<Text>();
+        p1GrooveHitText = GameObject.Find("P1 Groovetron On Hit Text").GetComponent<Text>();
 
-        p1ScoreUI = GameObject.Find("P1 Scoreboard Text").GetComponent<Text>();
+        p1ScoreUI = GameObject.Find("P1 Scoreboard Score").GetComponent<Text>();
         //p2ScoreUI = GameObject.Find("P2 Scoreboard Text").GetComponent<Text>();
 
       //  canvas = GameObject.Find("Canvas");
@@ -198,5 +200,11 @@ public class GameplayUI : MonoBehaviour
     public void removeWord()
     {
        // Destroy(gameObject);
+    }
+
+    public void setLetter(char letter)
+    {
+        p1GrooveHitText.text = letter.ToString();
+        p1GrooveText.color = Color.black;
     }
 }

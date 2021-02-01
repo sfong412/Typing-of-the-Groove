@@ -12,8 +12,13 @@ public class WordManager : MonoBehaviour
     //ui stuff
     public GameplayUI gameplayUI;
 
+    //custom player input
+    public PlayerInput playerInput;
+
     private bool hasActiveWord;
     private Word activeWord;
+
+    public char activeLetter;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +36,8 @@ public class WordManager : MonoBehaviour
     {
         if (words.Count == 0)
         {
-            Word word = new Word(WordGenerator.getRandomWord(), gameplayUI);
-            Debug.Log(word.word);
+            Word word = new Word(WordGenerator.getRandomWord(), LetterGenerator.getRandomLetter(), gameplayUI, playerInput);
+         //   Debug.Log(word.word);
             words.Add(word);
         }
         else //OPTIMIZE THE CODE BELOW BECAUSE THERE'S REPEATING CODE THERE
@@ -40,11 +45,13 @@ public class WordManager : MonoBehaviour
             hasActiveWord = false;
             words.Remove(words[0]);
 
-            Word word = new Word(WordGenerator.getRandomWord(), gameplayUI);
-            Debug.Log(word.word);
+            Word word = new Word(WordGenerator.getRandomWord(),  LetterGenerator.getRandomLetter(),gameplayUI, playerInput);
+         //   Debug.Log(word.word);
             words.Add(word); 
         }
     }
+
+//            playerInput.SendMessage("hitFail");
 
     public void typeLetter(char letter)
     {
@@ -53,6 +60,13 @@ public class WordManager : MonoBehaviour
             if (activeWord.getNextLetter() == letter)
             {
                 activeWord.typeLetter();
+            }
+            else if (activeWord.getNextLetter() != letter)
+            {
+                if (playerInput.failCounter < 5)
+                {
+                    playerInput.SendMessage("hitFail"); //change to reach max limit
+                }
             }
         }
         else
@@ -65,6 +79,13 @@ public class WordManager : MonoBehaviour
                     hasActiveWord = true;
                     word.typeLetter();
                     break;
+                }
+                else if (word.getNextLetter() != letter)
+                {
+                    if (playerInput.failCounter < 5)
+                    {
+                        playerInput.SendMessage("hitFail"); //see above
+                    }
                 }
             }
         }
