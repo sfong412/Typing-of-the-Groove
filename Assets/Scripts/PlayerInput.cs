@@ -71,9 +71,7 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         conductor = GameObject.Find("Conductor").GetComponent<Conductor>();
-
         gameplayManager = GameObject.Find("Gameplay Manager").GetComponent<GameplayManager>();
-
         ui = GameObject.Find("UI Manager").GetComponent<GameplayUI>();
 
         setHitRange();
@@ -166,7 +164,7 @@ public class PlayerInput : MonoBehaviour
             failCounter = 0;
             comboCounter = comboCounter + 1;
             score = score + scoreBasedOnCombo[comboCounter];    
-            if (comboCounter == 8) 
+            if (comboCounter == 9) 
             {
                 comboCounter = 1;
             }   

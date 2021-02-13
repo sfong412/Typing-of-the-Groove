@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameplayUI : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameplayUI : MonoBehaviour
 
     //public hitStatus status;
 
+    //change ALL text to textmeshpro
     public Text p1ScoreUI;
     public Text p2ScoreUI;
 
@@ -36,6 +38,8 @@ public class GameplayUI : MonoBehaviour
     public Text comboText;
 
     public Text wordText;
+
+    public TextMeshPro readyText;
 
     public Image beatIndicator1;
     public Image beatIndicator2;
@@ -65,7 +69,6 @@ public class GameplayUI : MonoBehaviour
         gameplayManager = GameObject.Find("Gameplay Manager").GetComponent<GameplayManager>();
 
         p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
-       // p2 = GameObject.Find("Player 2").GetComponent<PlayerInput>();
 
         //Call the image attached to the game object
         p1GrooveUI = GameObject.Find("P1 Groovetron").GetComponent<Image>();
@@ -75,9 +78,6 @@ public class GameplayUI : MonoBehaviour
         p1GrooveHitText = GameObject.Find("P1 Groovetron On Hit Text").GetComponent<Text>();
 
         p1ScoreUI = GameObject.Find("P1 Scoreboard Score").GetComponent<Text>();
-        //p2ScoreUI = GameObject.Find("P2 Scoreboard Text").GetComponent<Text>();
-
-      //  canvas = GameObject.Find("Canvas");
 
         hitStatusText = GameObject.Find("Hit Status Text").GetComponent<Text>();
         comboText = GameObject.Find("Combo Text").GetComponent<Text>();
@@ -178,11 +178,15 @@ public class GameplayUI : MonoBehaviour
         else if (p1.comboCounter == 7)
         {
             comboText.text = "Chillin!";
-            WordGenerator.changeListDifficulty();
         }
         else if (p1.comboCounter == 8)
         {
             comboText.text = "Freeze!";
+            WordGenerator.changeListDifficulty();
+        }
+        else if (p1.comboCounter == 9)
+        {
+
         }
 
         hitStatusText.text = "Great!";
@@ -231,6 +235,7 @@ public class GameplayUI : MonoBehaviour
         p1GrooveText.color = Color.black;
     }
 
+    //for lighting the beat indicator under the groovetron
     public void lightIndicator(Image indicator, Conductor c, int b)
     {
         int beat = b - 1;
@@ -257,5 +262,8 @@ public class GameplayUI : MonoBehaviour
                 indicator.color = new Color(0f, 0.851f, 0.1569f, 1f);
             }  
         }
+    }
+
+    void eventText(Conductor c) {
     }
 }

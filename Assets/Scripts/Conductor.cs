@@ -50,8 +50,6 @@ public class Conductor : MonoBehaviour
 
     public PlayerInput p1;
 
-    public PlayerInput p2;
-
     public WordManager wordManager;
 
     // Start is called before the first frame update
@@ -65,7 +63,6 @@ public class Conductor : MonoBehaviour
 
         //Get player inputs
         p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
-        //p2 = GameObject.Find("Player 2").GetComponent<PlayerInput>();
 
         wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
 
@@ -94,14 +91,13 @@ public class Conductor : MonoBehaviour
         {
             completedLoops++;
             p1.SendMessage("onFinishLoop");
-          //  p2.SendMessage("onFinishLoop");
             wordManager.SendMessage("addWord");
         }
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
 
-        setEvents(songData, 8);
+        setEvents(songData);
     }
 
     void Awake()
@@ -113,19 +109,19 @@ public class Conductor : MonoBehaviour
         conductor = this;
     }
 
-    void setEvents(SongMetadata data, float beat)
+    void setEvents(SongMetadata data)
     {
-    //    Debug.Log(data.getPlayStart());
-
+        float playEvent = data.playStart;
+        float endEvent = data.songEnd;
 
         //song starts
-        if (completedLoops == 2)
+        if (completedLoops == playEvent)
         {
             p1.playableState = true;
         }
 
         //song ends
-        if (completedLoops == 101)
+        if (completedLoops == endEvent)
         {
             p1.playableState = false;
         }

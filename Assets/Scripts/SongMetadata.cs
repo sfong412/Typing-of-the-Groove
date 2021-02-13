@@ -53,12 +53,6 @@ public class SongMetadata : MonoBehaviour
     {
         //Reads song JSON file
         ReadSongJSON();
-
-        //Checks initial BPM
-       // Debug.Log("before: " + bpm);
-
-        //Checks current BPM
-        //Debug.Log("after: " + bpm);
     }
 
     // Update is called once per frame
@@ -87,11 +81,14 @@ public class SongMetadata : MonoBehaviour
         year = song.year;
         bpm = song.bpm;
         beats = song.beats;
+
+        songStart = song.e_songStart;
+        playStart = song.e_playStart;
+        songEnd = song.e_songEnd;
     }
 
     public float getPlayStart()
     {
-        playStart = song.e_playStart;
         return playStart;
     }
 
@@ -121,10 +118,13 @@ public class SongMetadata : MonoBehaviour
         //Number of beats
         public int beats;
 
+        //4/4 beat position of 1st beat
         public float e_songStart;
 
+        //4/4 beat position of beat that starts the game's playable state
         public float e_playStart;
 
+        //4/4 beat position of beat that ends the song / playable state
         public float e_songEnd;
     }
 }
