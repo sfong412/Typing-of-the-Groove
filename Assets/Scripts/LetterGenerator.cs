@@ -6,8 +6,7 @@ public class LetterGenerator : MonoBehaviour
 {
     public static char getRandomLetter()
     {
-        string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        //string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string letters = "abcdefghijklmnopqrstuvwxyz";
         char randomLetter = letters[Random.Range(0, letters.Length)];
 
         return randomLetter;

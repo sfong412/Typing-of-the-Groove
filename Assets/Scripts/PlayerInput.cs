@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -94,47 +95,35 @@ public class PlayerInput : MonoBehaviour
         foreach (char letter in Input.inputString)
         {
             DetectHit(letter);
-          //  Debug.Log(LetterGenerator.getRandomLetter());
             wordManager.typeLetter(letter);
-           // Debug.Log(letter);
+            //Debug.Log(wordManager.words.Count);
         }
-    }
 
-    void OnGUI() 
-    {
+        goToMenu();
     }
 
     void DetectHit(char c) 
     {
-        //Event e = Event.current;
-
-        //string k = e.keyCode.ToString();
-
-        //!== add fail detection for other keys on the keyboard
-        //if (Input.GetKeyDown(KeyCode.Return)) -- OLD
-
-      //  foreach (char c in Input.inputString)
-      //  {
-            Debug.Log(beatLetter);
-            if (c == beatLetter && conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
-                {   
-                    myHitStatus = hitStatus.hitPass;
-                } 
-                else if (myHitStatus != hitStatus.hitPass)
-                {
-                    if (failCounter < 5)
-                    {
-                        //failCounter = failCounter + 1;
-                    }
-                    if (failCounter == 5)
-                    {
-                       // myHitStatus = hitStatus.hitFail;
-                    }
-                }
+        //checks if active word is typed, the correct key is pressed & is on the correct 4th beat timing
+        if (wordManager.words.Count == 0 && c == beatLetter && conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
+        {   
+             myHitStatus = hitStatus.hitPass;
+        } 
+        else if (myHitStatus != hitStatus.hitPass)
+        {
+            if (failCounter < 5)
+            {
+                failCounter = failCounter + 1;
+            }
+            if (failCounter == 5)
+            {
+                myHitStatus = hitStatus.hitFail;
+            }
+        }
     }
 
     void hitFail() {
-        failCounter = failCounter + 1;
+      //  failCounter = failCounter + 1;
 
         if (failCounter == 5)
         {
@@ -194,5 +183,13 @@ public class PlayerInput : MonoBehaviour
     public hitStatus GetHitStatus()
     {
         return myHitStatus;
+    }
+
+    void goToMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Song Menu");
+        }
     }
 }

@@ -16,37 +16,6 @@ public class GameplayManager : MonoBehaviour
     //Reference to the songMetadata script
     public SongMetadata songData;
 
-    //Song beats per minute
-    //This is determined by the song you're trying to sync up to
-   // public float songBpm;
-
-    //The number of seconds for each song beat
-   // public float secPerBeat;
-
-    //Current song position, in seconds
-   // public float songPosition;
-
-    //Current song position, in beats
-   // public float songPositionInBeats;
-
-    //How many seconds have passed since the song started
-   // public float dspSongTime;
-
-    //The offset to the first beat of the song in seconds
-   // public float firstBeatOffset;
-
-    //the number of beats in each loop
-  //  public float beatsPerLoop;
-
-    //the total number of loops completed since the looping clip first started
-   // public int completedLoops = 0;
-
-    //The current position of the song within the loop in beats.
-   // public float loopPositionInBeats;
-
-    //The current relative position of the song within the loop measured between 0 and 1.
-   // public float loopPositionInAnalog;
-
     //Conductor instance
     public static Conductor conductor;
 
@@ -131,26 +100,7 @@ public class GameplayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Get song metadata
-        //songData = GetComponent<SongMetadata>();
-
-        //Load the AudioSource attached to the Conductor GameObject
-       // musicSource = GetComponent<AudioSource>();
-
         conductor = GameObject.Find("Conductor").GetComponent<Conductor>();
-
-        //p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
-        //p2 = GameObject.Find("Player 2").GetComponent<PlayerInput>();
-
-        //Calculate the number of seconds in each beat
-       // Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
-        //secPerBeat = 60f / songBpm;
-
-        //Record the time when the music starts
-       // dspSongTime = (float)AudioSettings.dspTime;
-
-        //Start the music
-       // musicSource.Play();
 
         setHitRange();
         myHitStatus = hitStatus.hitNotDone;
@@ -180,16 +130,11 @@ public class GameplayManager : MonoBehaviour
 
     void Awake()
     {
-       // songData.ReadSongJSON();
-       // songData.UpdateSongInfo();
-      //  songBpm = songData.bpm;
-      //  beatsPerLoop = songData.beats;
         gameplayManager = this;
     }
 
     void DetectHit(Conductor c) 
     {
-        //if (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyUp(KeyCode.W)))
         if (Input.GetKeyDown(KeyCode.W))
         {
             if (c.loopPositionInBeats > minHitRange && c.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
@@ -216,70 +161,13 @@ public class GameplayManager : MonoBehaviour
                     callHitFail();
                 }
     }
-            /*
-         //   failCounter = 0;
 
-            if (myHitStatus == hitStatus.hitPass)
-                {
-           //         callHitSuccess();
-                } 
-            else if (myHitStatus != hitStatus.hitPass)
-                {
-            //        callHitFail();
-                }
-    }
-/*
-    void trackPlayback()
-    {
-        //determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
-
-        //determine how many beats since the song started
-        songPositionInBeats = songPosition / secPerBeat;
-
-        //calculate the loop position
-        if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
-        {
-            onFinishLoop();
-        }
-        loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
-
-        loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
-    }
-*/
     void comboScoreUp(float score, int[] combo, int counter) {
         score = score + combo[counter];
     }
 
     public void onFinishLoop()
         {
-           // completedLoops++;
-
-            //p1.SendMessage("onFinishLoop");
-            //p2.SendMessage("onFinishLoop");
-/*
-            fail = 0;
-
-            if (status == hitStatus.hitPass)
-                {
-           //         callHitSuccess();
-                } 
-            else if (status != hitStatus.hitPass)
-                {
-            //        callHitFail();
-                }
-            /*
-         //   failCounter = 0;
-
-            if (myHitStatus == hitStatus.hitPass)
-                {
-           //         callHitSuccess();
-                } 
-            else if (myHitStatus != hitStatus.hitPass)
-                {
-            //        callHitFail();
-                }
-            */
         }
 
     void setHitRange()
@@ -296,6 +184,7 @@ public class GameplayManager : MonoBehaviour
 
         if (comboCounter > 7) 
             {
+                increaseDifficulty();
                 comboCounter = 1;
             }
         else 
@@ -315,9 +204,10 @@ public class GameplayManager : MonoBehaviour
         return;
     }
 
-    void checkNumberOfPlayers(int players) 
+    void increaseDifficulty() 
     {
-        
+        difficultyLevel = difficultyLevel + 1;
+        return;
     }
 
     public hitStatus GetHitStatus()

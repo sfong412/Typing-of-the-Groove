@@ -51,8 +51,6 @@ public class WordManager : MonoBehaviour
         }
     }
 
-//            playerInput.SendMessage("hitFail");
-
     public void typeLetter(char letter)
     {
         if (hasActiveWord)

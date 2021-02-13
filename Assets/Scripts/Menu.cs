@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
 
     public GameObject MenuPanel;
     public GameObject SongSelectPanel;
+    public GameObject HowToPlayPanel;
 
     public GameObject Conductor;
 
@@ -26,6 +27,7 @@ public class Menu : MonoBehaviour
 
         MenuPanel.SetActive(true);
         SongSelectPanel.SetActive(false);
+        HowToPlayPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class Menu : MonoBehaviour
     {
         MenuPanel.SetActive(true);
         SongSelectPanel.SetActive(false);
+        HowToPlayPanel.SetActive(false);
         Debug.Log("Menu Panel shown");
     }
 
@@ -45,15 +48,29 @@ public class Menu : MonoBehaviour
     {
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(true);
+        HowToPlayPanel.SetActive(false);
         Debug.Log("Song Select Panel shown");
+    }
+
+    public void ShowHowToPlayPanel()
+    {
+        MenuPanel.SetActive(false);
+        HowToPlayPanel.SetActive(true);
+        Debug.Log("How to Play Panel shown");
     }
 
     public void LoadSong(string sceneName)
     {
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(false);
+        HowToPlayPanel.SetActive(false);
         SceneManager.LoadScene(sceneName);
         Debug.Log("Now loading " + sceneName);
         jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

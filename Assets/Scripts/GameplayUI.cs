@@ -37,6 +37,11 @@ public class GameplayUI : MonoBehaviour
 
     public Text wordText;
 
+    public Image beatIndicator1;
+    public Image beatIndicator2;
+    public Image beatIndicator3;
+    public Image beatIndicator4;
+
     //GameObject canvas;
 
     //private float[] beats = {2.95, 3.05};
@@ -95,22 +100,39 @@ public class GameplayUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {    
-        changeButtonColor(p1GrooveUI, conductor, gameplayManager);
-        //changeButtonColor(p2GrooveUI, conductor, gameplayManager);
+        changeButtonColor(p1GrooveUI, conductor, gameplayManager, false);
+        changeButtonColor(p1GrooveHitUI, conductor, gameplayManager, true);
 
         changeScore(p1ScoreUI, gameplayManager, 1);
-        //changeScore(p2ScoreUI, gameplayManager, 2);
+
+        lightIndicator(beatIndicator1, conductor, 1);
+        lightIndicator(beatIndicator2, conductor, 2);
+        lightIndicator(beatIndicator3, conductor, 3);
+        lightIndicator(beatIndicator4, conductor, 4);
     }
 
-    public void changeButtonColor(Image i, Conductor c, GameplayManager g) {
+    public void changeButtonColor(Image i, Conductor c, GameplayManager g, bool isOnHit) {
 
         /*change the code to be dynamically based on number of beats instead of this hardcoded stuff*/
-        if (g.myHitStatus != hitStatus.hitFail)
+        /*better organize this code to reduce repetition */
+
+        if (g.myHitStatus != hitStatus.hitFail && isOnHit == false)
         {
             if (c.loopPositionInBeats > 0 - 0.1 && c.loopPositionInBeats < 0 + 0.1
              || c.loopPositionInBeats > 1 - 0.1 && c.loopPositionInBeats < 1 + 0.1
              || c.loopPositionInBeats > 2 - 0.1 && c.loopPositionInBeats < 2 + 0.1
              || c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
+            {
+                i.color = onBeat;
+            }
+            else
+            {
+                i.color = offBeat;
+            }
+        }
+        else if (g.myHitStatus != hitStatus.hitFail && isOnHit == true)
+        {
+            if (c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
             {
                 i.color = onBeat;
             }
@@ -125,6 +147,7 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
+    //fix this mess of a code
     public void changeScore(Text t, GameplayManager g, int i) {
         if (i == 1)
         {
@@ -153,6 +176,7 @@ public class GameplayUI : MonoBehaviour
         else if (p1.comboCounter == 7)
         {
             comboText.text = "Chillin!";
+            WordGenerator.changeListDifficulty();
         }
         else if (p1.comboCounter == 8)
         {
@@ -185,8 +209,6 @@ public class GameplayUI : MonoBehaviour
 
     public void setWord(string word)
     {
-        //Text p1GrooveUI = GameObject.Find("P1 Groovetron Score").GetComponent<Text>();
-       // wordText.text = word;
         p1GrooveText.text = word;
         p1GrooveText.color = Color.black;
     }
@@ -199,12 +221,39 @@ public class GameplayUI : MonoBehaviour
 
     public void removeWord()
     {
-       // Destroy(gameObject);
     }
 
     public void setLetter(char letter)
     {
         p1GrooveHitText.text = letter.ToString();
         p1GrooveText.color = Color.black;
+    }
+
+    public void lightIndicator(Image indicator, Conductor c, int b)
+    {
+        int beat = b - 1;
+
+        if (c.loopPositionInBeats > beat - 0.1 && c.loopPositionInBeats < beat + 0.1)
+        {
+            if (b < 4)
+            {
+                indicator.color = new Color(1f, 0.5059f, 0.5490f, 1f);
+            }
+            else
+            {
+                indicator.color = new Color(0.3725f, 1f, 0.4157f, 1f);
+            }
+        }
+        else
+        {
+            if (b < 4)
+            {
+                indicator.color = new Color(0.9059f, 0.3216f, 0.33f, 1f);
+            }
+            else
+            {
+                indicator.color = new Color(0f, 0.851f, 0.1569f, 1f);
+            }  
+        }
     }
 }
