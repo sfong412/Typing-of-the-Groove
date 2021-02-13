@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
     //Keeps track of failed button inputs in a beat
     public int failCounter;
 
-    private bool isCombo;
+   // private bool isCombo;
 
     public static Conductor conductor;
 
@@ -62,6 +62,8 @@ public class PlayerInput : MonoBehaviour
     public WordGenerator letterGenerator;
 
     char beatLetter;
+
+    public bool playableState;
 
   //  public WordManager wordManager;
 
@@ -84,21 +86,25 @@ public class PlayerInput : MonoBehaviour
         difficultyLevel = 1;
         comboCounter = 1;
         failCounter = 0;
-        isCombo = false;
+        //isCombo = false;
 
         beatLetter = '\n';
+
+        playableState = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (char letter in Input.inputString)
+        if (playableState == true)
         {
-            DetectHit(letter);
-            wordManager.typeLetter(letter);
-            //Debug.Log(wordManager.words.Count);
+            foreach (char letter in Input.inputString)
+            {
+                DetectHit(letter);
+                wordManager.typeLetter(letter);
+                //Debug.Log(wordManager.words.Count);
+            }
         }
-
         goToMenu();
     }
 
@@ -154,24 +160,30 @@ public class PlayerInput : MonoBehaviour
 
     void callHitSuccess()
     {
-        myHitStatus = hitStatus.hitNotDone;
-        failCounter = 0;
-        comboCounter = comboCounter + 1;
-        score = score + scoreBasedOnCombo[comboCounter];    
-        if (comboCounter == 8) 
+        if (playableState == true)
         {
-            comboCounter = 1;
-        }   
-        ui.SendMessage("onHitSuccess");
+            myHitStatus = hitStatus.hitNotDone;
+            failCounter = 0;
+            comboCounter = comboCounter + 1;
+            score = score + scoreBasedOnCombo[comboCounter];    
+            if (comboCounter == 8) 
+            {
+                comboCounter = 1;
+            }   
+            ui.SendMessage("onHitSuccess");
+        }
         return;
     }
 
     void callHitFail()
     {
-        myHitStatus = hitStatus.hitNotDone;
-        failCounter = 0;
-        comboCounter = 1;
-        ui.SendMessage("onHitFail");
+        if (playableState == true)
+        {
+            myHitStatus = hitStatus.hitNotDone;
+            failCounter = 0;
+            comboCounter = 1;
+            ui.SendMessage("onHitFail");
+        }
         return;
     }
 
@@ -191,5 +203,15 @@ public class PlayerInput : MonoBehaviour
         {
             SceneManager.LoadScene("Song Menu");
         }
+    }
+
+    void setPlayableState()
+    {
+        playableState = true;
+    }
+
+    void unsetPlayableState()
+    {
+        playableState = false;
     }
 }

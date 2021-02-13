@@ -6,10 +6,8 @@
     "year": 2018,
     "bpm": 109,
     "beats": 4,
-
-    "events": [
-        0,
-        4.295,
-        341.862
-    ]
+    
+    "e_songStart": 0,
+    "e_playStart": 4.295,
+    "e_songEnd": 341.862
 }

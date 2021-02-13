@@ -100,6 +100,8 @@ public class Conductor : MonoBehaviour
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
+
+        setEvents(songData, 8);
     }
 
     void Awake()
@@ -109,5 +111,23 @@ public class Conductor : MonoBehaviour
         songBpm = songData.bpm;
         beatsPerLoop = songData.beats;
         conductor = this;
+    }
+
+    void setEvents(SongMetadata data, float beat)
+    {
+    //    Debug.Log(data.getPlayStart());
+
+
+        //song starts
+        if (completedLoops == 2)
+        {
+            p1.playableState = true;
+        }
+
+        //song ends
+        if (completedLoops == 101)
+        {
+            p1.playableState = false;
+        }
     }
 }

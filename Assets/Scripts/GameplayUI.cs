@@ -115,35 +115,37 @@ public class GameplayUI : MonoBehaviour
 
         /*change the code to be dynamically based on number of beats instead of this hardcoded stuff*/
         /*better organize this code to reduce repetition */
-
-        if (g.myHitStatus != hitStatus.hitFail && isOnHit == false)
+        if (p1.playableState == true)
         {
-            if (c.loopPositionInBeats > 0 - 0.1 && c.loopPositionInBeats < 0 + 0.1
-             || c.loopPositionInBeats > 1 - 0.1 && c.loopPositionInBeats < 1 + 0.1
-             || c.loopPositionInBeats > 2 - 0.1 && c.loopPositionInBeats < 2 + 0.1
-             || c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
+            if (g.myHitStatus != hitStatus.hitFail && isOnHit == false)
             {
-                i.color = onBeat;
+                if (c.loopPositionInBeats > 0 - 0.1 && c.loopPositionInBeats < 0 + 0.1
+                || c.loopPositionInBeats > 1 - 0.1 && c.loopPositionInBeats < 1 + 0.1
+                || c.loopPositionInBeats > 2 - 0.1 && c.loopPositionInBeats < 2 + 0.1
+                || c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
+                {
+                    i.color = onBeat;
+                }
+                else
+                {
+                    i.color = offBeat;
+                }
             }
-            else
+            else if (g.myHitStatus != hitStatus.hitFail && isOnHit == true)
             {
-                i.color = offBeat;
+                if (c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
+                {
+                    i.color = onBeat;
+                }
+                else
+                {
+                    i.color = offBeat;
+                }
             }
-        }
-        else if (g.myHitStatus != hitStatus.hitFail && isOnHit == true)
-        {
-            if (c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
+            else if (g.myHitStatus == hitStatus.hitFail)
             {
-                i.color = onBeat;
+                i.color = failColor;
             }
-            else
-            {
-                i.color = offBeat;
-            }
-        }
-        else if (g.myHitStatus == hitStatus.hitFail)
-        {
-            i.color = failColor;
         }
     }
 

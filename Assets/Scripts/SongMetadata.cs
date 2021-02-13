@@ -8,10 +8,10 @@ public class SongMetadata : MonoBehaviour
     Menu menu;
     
     //JSON object
-    public string jsonFile;
+   // public string jsonFile;
 
     //JSON string
-    public string jsonString;
+   // public string jsonString;
    
     //filename of the audio file
     public string fileName;
@@ -37,6 +37,12 @@ public class SongMetadata : MonoBehaviour
     //Number of beats
     public int beats;
 
+    public float songStart;
+
+    public float playStart;
+
+    public float songEnd;
+
     public SongInfo song;
 
     // C# song path thingy
@@ -46,7 +52,7 @@ public class SongMetadata : MonoBehaviour
     void Start()
     {
         //Reads song JSON file
-        //ReadSongJSON();
+        ReadSongJSON();
 
         //Checks initial BPM
        // Debug.Log("before: " + bpm);
@@ -61,13 +67,14 @@ public class SongMetadata : MonoBehaviour
 
     }
 
-    public void ReadSongJSON()
+    //break this and the tempo will break
+    public void ReadSongJSON()//string filepath
     {
-        jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
+        string jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
         //jsonFile = menu.jsonFile;
-        jsonString = File.ReadAllText(jsonFile);
+        string jsonString = File.ReadAllText(jsonFile);
         song = JsonUtility.FromJson<SongInfo>(jsonString);
-        Debug.Log(jsonFile);
+        //Debug.Log(jsonFile);
     }
 
     public void UpdateSongInfo()
@@ -80,6 +87,12 @@ public class SongMetadata : MonoBehaviour
         year = song.year;
         bpm = song.bpm;
         beats = song.beats;
+    }
+
+    public float getPlayStart()
+    {
+        playStart = song.e_playStart;
+        return playStart;
     }
 
     [System.Serializable]
@@ -107,16 +120,11 @@ public class SongMetadata : MonoBehaviour
 
         //Number of beats
         public int beats;
-    }
-    
-    public void DetectSongs(){
-        songPath = Application.dataPath + "/Songs";
-        Debug.Log(songPath);
-    }
 
+        public float e_songStart;
 
-    IEnumerator songDetectionCoroutine()
-    {
-        yield return new WaitForSeconds(3);
+        public float e_playStart;
+
+        public float e_songEnd;
     }
 }
