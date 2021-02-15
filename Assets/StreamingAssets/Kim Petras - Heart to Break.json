@@ -7,12 +7,10 @@
     "bpm": 109,
     "beats": 4,
     
-    //in loops
     "e_songStart": 0,
     "e_playStart": 2,
     "e_songEnd": 101,
 
-    //in analog
     "_e_songStart": 0,
     "_e_playStart": 4.295,
     "_e_songEnd": 341.862

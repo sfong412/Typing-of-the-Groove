@@ -39,7 +39,7 @@ public class GameplayUI : MonoBehaviour
 
     public Text wordText;
 
-    public TextMeshPro readyText;
+    public TextMeshProUGUI readyText;
 
     public Image beatIndicator1;
     public Image beatIndicator2;
@@ -81,6 +81,8 @@ public class GameplayUI : MonoBehaviour
 
         hitStatusText = GameObject.Find("Hit Status Text").GetComponent<Text>();
         comboText = GameObject.Find("Combo Text").GetComponent<Text>();
+
+        readyText = GameObject.Find("Ready Text").GetComponent<TextMeshProUGUI>();
 
         onBeat = new Color(0.9f, 0.9f, 0.9f, 1f);
 
@@ -166,30 +168,19 @@ public class GameplayUI : MonoBehaviour
         if (p1.comboCounter == 1)
         {
             comboText.text = "";
+            hitStatusText.text = "Great!";
         } 
-        else if (p1.comboCounter > 1 && p1.comboCounter < 6)
+        else if (p1.comboCounter > 1 && p1.comboCounter <= 8)
         {
             comboText.text = (p1.comboCounter - 1) + " Hits!";
-        }
-        else if (p1.comboCounter == 6)
-        {
-            comboText.text = "Cool!";
-        }
-        else if (p1.comboCounter == 7)
-        {
-            comboText.text = "Chillin!";
-        }
-        else if (p1.comboCounter == 8)
-        {
-            comboText.text = "Freeze!";
-            WordGenerator.changeListDifficulty();
-        }
-        else if (p1.comboCounter == 9)
-        {
-
+            hitStatusText.text = "Great!";
         }
 
-        hitStatusText.text = "Great!";
+        if (p1.comboCounter == 8)
+        {
+            onCompleteCombo();
+        } 
+
         StartCoroutine(FadeTextToZeroAlpha(1f, hitStatusText));
         return;
     }
@@ -202,7 +193,25 @@ public class GameplayUI : MonoBehaviour
         return;
     }
 
+    void onCompleteCombo()
+    {
+        WordGenerator.changeListDifficulty();
+        hitStatusText.text = "Level Up!";
+    }
+
     public IEnumerator FadeTextToZeroAlpha(float t, Text i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        yield return new WaitForSeconds(1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
+    // ~~change ALL text to textmeshpro plz~~
+    public IEnumerator FadeTextToZeroAlphaPro(float t, TextMeshProUGUI i)
     {
         i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
         yield return new WaitForSeconds(1);
@@ -264,6 +273,17 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    void eventText(Conductor c) {
+    void eventText(Conductor c, PlayerInput p, TextMeshProUGUI t) {
+        if (p.playableState == true)
+        {
+            StartCoroutine(FadeTextToZeroAlphaPro(1f, t));
+        }
+        return;
+    }
+
+    void onPlayState()
+    {
+        readyText.color = new Color(readyText.color.r, readyText.color.g, readyText.color.b, 0);
+      //  Debug.Log(t);
     }
 }

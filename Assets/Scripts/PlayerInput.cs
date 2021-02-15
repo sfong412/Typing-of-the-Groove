@@ -41,7 +41,10 @@ public class PlayerInput : MonoBehaviour
         1600,
         3200, //cool
         6400, //chillin'
-        128000 //freeze!
+        128000, //freeze!
+        0,
+        0,
+        0
     };
 
     //Keeps track of failed button inputs in a beat
@@ -60,6 +63,8 @@ public class PlayerInput : MonoBehaviour
     public WordManager wordManager;
 
     public WordGenerator letterGenerator;
+
+    public Animator dancer;
 
     char beatLetter;
 
@@ -169,6 +174,7 @@ public class PlayerInput : MonoBehaviour
                 comboCounter = 1;
             }   
             ui.SendMessage("onHitSuccess");
+            dancer.SendMessage("onHitSuccess");
         }
         return;
     }
@@ -181,6 +187,7 @@ public class PlayerInput : MonoBehaviour
             failCounter = 0;
             comboCounter = 1;
             ui.SendMessage("onHitFail");
+            dancer.SendMessage("onHitFail");
         }
         return;
     }
@@ -206,6 +213,7 @@ public class PlayerInput : MonoBehaviour
     void setPlayableState()
     {
         playableState = true;
+        ui.SendMessage("onPlayState");
     }
 
     void unsetPlayableState()

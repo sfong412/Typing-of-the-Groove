@@ -117,7 +117,8 @@ public class Conductor : MonoBehaviour
         //song starts
         if (completedLoops == playEvent)
         {
-            p1.playableState = true;
+            //p1.playableState = true;
+            p1.SendMessage("setPlayableState");
         }
 
         //song ends
