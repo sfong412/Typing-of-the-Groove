@@ -21,6 +21,8 @@ public class SyncedAnimation : MonoBehaviour
     public int idleState = Animator.StringToHash("Idle");
 
     public int danceState;
+
+    //add smoother dance transitions
     private int[] danceList = 
     {
         Animator.StringToHash("Dance01"),
