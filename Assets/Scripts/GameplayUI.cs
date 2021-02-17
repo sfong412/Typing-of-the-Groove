@@ -46,10 +46,6 @@ public class GameplayUI : MonoBehaviour
     public Image beatIndicator3;
     public Image beatIndicator4;
 
-    //GameObject canvas;
-
-    //private float[] beats = {2.95, 3.05};
-
     public bool haveBG;
 
     public bool isScore;
@@ -119,7 +115,8 @@ public class GameplayUI : MonoBehaviour
         /*better organize this code to reduce repetition */
         if (p1.playableState == true)
         {
-            if (g.myHitStatus != hitStatus.hitFail && isOnHit == false)
+            //lights up the left part of the groovetron
+            if (g.myHitStatus != hitStatus.hitFail && isOnHit == false && p1.failCounter < 5)
             {
                 if (c.loopPositionInBeats > 0 - 0.1 && c.loopPositionInBeats < 0 + 0.1
                 || c.loopPositionInBeats > 1 - 0.1 && c.loopPositionInBeats < 1 + 0.1
@@ -133,7 +130,8 @@ public class GameplayUI : MonoBehaviour
                     i.color = offBeat;
                 }
             }
-            else if (g.myHitStatus != hitStatus.hitFail && isOnHit == true)
+            //lights up the right part of the groovetron
+            else if (g.myHitStatus != hitStatus.hitFail && isOnHit == true && p1.failCounter < 5)
             {
                 if (c.loopPositionInBeats > 3 - 0.1 && c.loopPositionInBeats < 3 + 0.1)
                 {
@@ -144,7 +142,8 @@ public class GameplayUI : MonoBehaviour
                     i.color = offBeat;
                 }
             }
-            else if (g.myHitStatus == hitStatus.hitFail)
+            //darkens the groovetron if fail counter reaches its limit
+            else if (g.myHitStatus == hitStatus.hitFail || p1.failCounter == 5)
             {
                 i.color = failColor;
             }
