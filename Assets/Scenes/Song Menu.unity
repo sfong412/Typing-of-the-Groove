@@ -387,7 +387,7 @@ PrefabInstance:
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 884864339}
+      objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 0
@@ -904,7 +904,6 @@ GameObject:
   m_Component:
   - component: {fileID: 884864338}
   - component: {fileID: 884864337}
-  - component: {fileID: 884864339}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -944,38 +943,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &884864339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884864336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7588f1054358c043802a7669cc88cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jsonFile: 
-  jsonString: 
-  fileName: 
-  title: 
-  artist: 
-  album: 
-  genre: 
-  year: 0
-  bpm: 0
-  beats: 0
-  song:
-    fileName: 
-    title: 
-    artist: 
-    album: 
-    genre: 
-    year: 0
-    bpm: 0
-    beats: 0
-  songPath: 
 --- !u!1 &1008707565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,7 +1435,7 @@ PrefabInstance:
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 884864339}
+      objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 0
@@ -1661,43 +1628,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633943726}
   m_CullTransparentMesh: 0
---- !u!1 &1791954744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8778385549973763176, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
-  m_PrefabInstance: {fileID: 452206233}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1791954745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791954744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7588f1054358c043802a7669cc88cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jsonFile: 
-  jsonString: 
-  fileName: 
-  title: 
-  artist: 
-  album: 
-  genre: 
-  year: 0
-  bpm: 0
-  beats: 0
-  song:
-    fileName: 
-    title: 
-    artist: 
-    album: 
-    genre: 
-    year: 0
-    bpm: 0
-    beats: 0
-  songPath: 
 --- !u!1 &2114740512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,7 +1716,7 @@ PrefabInstance:
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 884864339}
+      objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 0

@@ -37,7 +37,7 @@ public class SyncedAnimation : MonoBehaviour
     void Start()
     {
          //Load the animator attached to this object
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         //Get the info about the current animator state
         animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -51,7 +51,7 @@ public class SyncedAnimation : MonoBehaviour
     {
         //Start playing the current animation from wherever the current conductor loop is
         animator.Play(currentState, -1, conductor.loopPositionInAnalog);
-        
+            
         //Set the speed to 0 so it will only change frames when you next update it
         animator.speed = 0;
     }
