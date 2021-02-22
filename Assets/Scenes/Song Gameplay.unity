@@ -1082,7 +1082,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1556678076239556, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729391687579228, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4542367493302300, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
       propertyPath: m_RootOrder
@@ -1090,7 +1094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4542367493302300, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4542367493302300, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1128,6 +1132,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95354854312695720, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 585f9cc915e98ed4898dafa2b359fb02, type: 3}
+    - target: {fileID: 95354854312695720, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f738ee3ecdc05594c99316c4b42edbc0, type: 2}
+    - target: {fileID: 95354854312695720, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137161086871771442, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300138, guid: 99478cd63e3e232409ade530c2e7f78f, type: 3}
     - target: {fileID: 137161086871771442, guid: 713fa47cc510dcb409058db76c6577ab, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1178,7 +1198,6 @@ GameObject:
   - component: {fileID: 1631400278}
   - component: {fileID: 1631400277}
   - component: {fileID: 1631400280}
-  - component: {fileID: 1631400281}
   m_Layer: 0
   m_Name: Conductor
   m_TagString: Untagged
@@ -1358,24 +1377,6 @@ MonoBehaviour:
     e_playStart: 0
     e_songEnd: 0
   songPath: Assets/StreamingAssets/Kim Petras - Heart to Break.json
---- !u!114 &1631400281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631400276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7588f1054358c043802a7669cc88cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conductor: {fileID: 1631400278}
-  gameplayManager: {fileID: 2079068947}
-  animator: {fileID: 1595828288}
-  currentState: 0
-  idleState: 2081823275
-  danceState: 0
 --- !u!850595691 &1650366748
 LightingSettings:
   m_ObjectHideFlags: 0

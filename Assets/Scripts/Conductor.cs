@@ -126,5 +126,11 @@ public class Conductor : MonoBehaviour
         {
             p1.playableState = false;
         }
+
+        if (completedLoops == endEvent + 8)
+        {
+            //record score
+            p1.goToMenu();
+        }
     }
 }

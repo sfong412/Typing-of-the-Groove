@@ -34,14 +34,14 @@ public class PlayerInput : MonoBehaviour
     private int[] scoreBasedOnCombo = 
     {
         0,
-        100,
-        200,
-        400,
-        800,
-        1600,
-        3200, //cool
-        6400, //chillin'
-        128000, //freeze!
+        10,
+        20,
+        40,
+        80,
+        160,
+        320, //cool
+        640, //chillin'
+        1280, //freeze!
         0,
         0,
         0
@@ -108,7 +108,7 @@ public class PlayerInput : MonoBehaviour
                 //Debug.Log(wordManager.words.Count);
             }
         }
-        goToMenu();
+        menuButton();
     }
 
     void DetectHit(char c) 
@@ -202,12 +202,17 @@ public class PlayerInput : MonoBehaviour
         return myHitStatus;
     }
 
-    void goToMenu()
+    void menuButton()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Song Menu");
+            goToMenu();
         }
+    }
+
+    public void goToMenu()
+    {
+        SceneManager.LoadScene("Song Menu");
     }
 
     void setPlayableState()

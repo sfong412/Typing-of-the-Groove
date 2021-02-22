@@ -30,6 +30,9 @@ public class GameplayUI : MonoBehaviour
     public Text p1GrooveText;
     public Text p1GrooveHitText;
 
+    private float redValue;
+    private float grooveOpacity;
+
     private Color onBeat;
     private Color offBeat;
     private Color failColor;
@@ -86,6 +89,9 @@ public class GameplayUI : MonoBehaviour
 
         failColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
+        redValue = 0;
+        grooveOpacity = 1;
+
         //wip - for dynamic time signature keyPress threshold thing
         beats = new int[(int)conductor.beatsPerLoop];
 
@@ -107,6 +113,21 @@ public class GameplayUI : MonoBehaviour
         lightIndicator(beatIndicator2, conductor, 2);
         lightIndicator(beatIndicator3, conductor, 3);
         lightIndicator(beatIndicator4, conductor, 4);
+
+        if (p1.playableState == true)
+        {
+            grooveOpacity = 1;
+            p1GrooveText.color = new Color(redValue, 0f, 0f, grooveOpacity);
+            p1GrooveHitText.color = new Color(0f, 0f, 0f, grooveOpacity);
+        }
+        else
+        {
+            grooveOpacity = 0;
+            p1GrooveText.color = new Color(redValue, 0f, 0f, grooveOpacity);
+            p1GrooveHitText.color = new Color(0f, 0f, 0f, grooveOpacity);
+        }
+
+      //  Debug.Log(p1.playableState);
     }
 
     public void changeButtonColor(Image i, Conductor c, GameplayManager g, bool isOnHit) {
@@ -224,13 +245,15 @@ public class GameplayUI : MonoBehaviour
     public void setWord(string word)
     {
         p1GrooveText.text = word;
-        p1GrooveText.color = Color.black;
+        redValue = 0;
+        //p1GrooveText.color = new Color(0f, 0f, 0f, grooveOpacity);
     }
 
     public void removeLetter()
     {
         p1GrooveText.text = p1GrooveText.text.Remove(0,1);
-        p1GrooveText.color = Color.red;
+        redValue = 1;
+        //p1GrooveText.color = new Color(1f, 0f, 0f, grooveOpacity);
     }
 
     public void removeWord()
@@ -240,23 +263,36 @@ public class GameplayUI : MonoBehaviour
     public void setLetter(char letter)
     {
         p1GrooveHitText.text = letter.ToString();
-        p1GrooveText.color = Color.black;
+      //  p1GrooveHitText.color = new Color(0f, 0f, 0f, grooveOpacity);
     }
 
     //for lighting the beat indicator under the groovetron
     public void lightIndicator(Image indicator, Conductor c, int b)
     {
         int beat = b - 1;
-
-        if (c.loopPositionInBeats > beat - 0.1 && c.loopPositionInBeats < beat + 0.1)
+        if (p1.playableState == true)
         {
-            if (b < 4)
+            if (c.loopPositionInBeats > beat - 0.1 && c.loopPositionInBeats < beat + 0.1)
             {
-                indicator.color = new Color(1f, 0.5059f, 0.5490f, 1f);
+                if (b < 4)
+                {
+                    indicator.color = new Color(1f, 0.5059f, 0.5490f, 1f);
+                }
+                else
+                {
+                    indicator.color = new Color(0.3725f, 1f, 0.4157f, 1f);
+                }
             }
             else
             {
-                indicator.color = new Color(0.3725f, 1f, 0.4157f, 1f);
+                if (b < 4)
+                {
+                    indicator.color = new Color(0.9059f, 0.3216f, 0.33f, 1f);
+                }
+                else
+                {
+                    indicator.color = new Color(0f, 0.851f, 0.1569f, 1f);
+                }  
             }
         }
         else
