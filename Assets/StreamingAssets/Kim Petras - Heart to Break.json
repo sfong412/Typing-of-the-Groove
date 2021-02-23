@@ -1,4 +1,5 @@
 {
+    "fileName": "Kim Petras - Heart to Break",
     "title": "Heart to Break",
     "artist": "Kim Petras",
     "album": "Heart to Break - Single",
@@ -9,9 +10,6 @@
     
     "e_songStart": 0,
     "e_playStart": 2,
-    "e_songEnd": 101,
-
-    "_e_songStart": 0,
-    "_e_playStart": 4.295,
-    "_e_songEnd": 341.862
+    "e_playEnd": 101,
+    "e_songEnd": 103
 }

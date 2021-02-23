@@ -46,7 +46,7 @@ public class Conductor : MonoBehaviour
     //an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
 
-    AudioClip myClip;
+    AudioClip songClip;
 
     public PlayerInput p1;
 
@@ -72,6 +72,8 @@ public class Conductor : MonoBehaviour
 
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
+
+        musicSource.clip = songClip;
 
         //Start the music
         musicSource.Play();
@@ -106,30 +108,34 @@ public class Conductor : MonoBehaviour
         songData.UpdateSongInfo();
         songBpm = songData.bpm;
         beatsPerLoop = songData.beats;
+        songClip = Resources.Load<AudioClip>("Sounds/" + songData.fileName);
         conductor = this;
     }
 
     void setEvents(SongMetadata data)
     {
-        float playEvent = data.playStart;
-        float endEvent = data.songEnd;
+        // -- find a way to convery song start position to first beat offset variable --
+        float songStartEvent = data.songStart;
+        float playStartEvent = data.playStart;
+        float playEndEvent = data.playEnd;
+        float songEndEvent = data.songEnd;
 
         //song starts
-        if (completedLoops == playEvent)
+        if (completedLoops == playStartEvent)
         {
             //p1.playableState = true;
             p1.SendMessage("setPlayableState");
         }
 
         //song ends
-        if (completedLoops == endEvent)
+        if (completedLoops == playEndEvent)
         {
             p1.playableState = false;
         }
 
-        if (completedLoops == endEvent + 8)
+        if (completedLoops == songEndEvent)
         {
-            //record score
+            // -- record score function --
             p1.goToMenu();
         }
     }

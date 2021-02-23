@@ -59,14 +59,21 @@ public class Menu : MonoBehaviour
         Debug.Log("How to Play Panel shown");
     }
 
-    public void LoadSong(string sceneName)
+    public void LoadSong(string filePath)
     {
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
-        SceneManager.LoadScene(sceneName);
-        Debug.Log("Now loading " + sceneName);
-        jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
+        SceneManager.LoadScene("Song Gameplay");
+        Debug.Log("Now loading " + filePath);
+        //jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
+        jsonFile = songFile(filePath);
+    }
+
+    string songFile(string songName)
+    {
+        string path = Application.streamingAssetsPath + "/" + songName + ".json";
+        return path;
     }
 
     public void QuitGame()

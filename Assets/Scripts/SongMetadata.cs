@@ -41,6 +41,8 @@ public class SongMetadata : MonoBehaviour
 
     public float playStart;
 
+    public float playEnd;
+
     public float songEnd;
 
     public SongInfo song;
@@ -84,6 +86,7 @@ public class SongMetadata : MonoBehaviour
 
         songStart = song.e_songStart;
         playStart = song.e_playStart;
+        playEnd = song.e_playEnd;
         songEnd = song.e_songEnd;
     }
 
@@ -125,6 +128,9 @@ public class SongMetadata : MonoBehaviour
         public float e_playStart;
 
         //4/4 beat position of beat that ends the song / playable state
+        public float e_playEnd;
+
+        //
         public float e_songEnd;
     }
 }

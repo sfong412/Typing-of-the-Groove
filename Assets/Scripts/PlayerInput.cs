@@ -104,8 +104,11 @@ public class PlayerInput : MonoBehaviour
             foreach (char letter in Input.inputString)
             {
                 DetectHit(letter);
-                wordManager.typeLetter(letter);
-                //Debug.Log(wordManager.words.Count);
+
+                if (myHitStatus != hitStatus.hitFail)
+                {
+                    wordManager.typeLetter(letter);
+                }
             }
         }
         menuButton();
