@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*Made it global for Gameplay UI script. Might change organization of this*/
 public enum hitStatus
@@ -12,8 +13,6 @@ public enum hitStatus
     
 public class GameplayManager : MonoBehaviour
 {
-    //Conductor instance
-    //public static Conductor conductor;
 
     private int[] numberOfPlayers =
     {
@@ -23,12 +22,9 @@ public class GameplayManager : MonoBehaviour
 
     public hitStatus myHitStatus;
 
-    //public List<Word> words;
-
     // Start is called before the first frame update
     void Start()
     {
-    //    conductor = GameObject.Find("Conductor").GetComponent<Conductor>();
     }
 
     public hitStatus GetHitStatus()
@@ -36,4 +32,21 @@ public class GameplayManager : MonoBehaviour
         return myHitStatus;
     }
     
+    public static bool isGameplay()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+
+        bool gameplay;
+
+        if (scene.name == "Song Gameplay")
+        {
+            gameplay = true;
+        }
+        else
+        {
+            gameplay = false;
+        }
+
+        return gameplay;
+    }
 }

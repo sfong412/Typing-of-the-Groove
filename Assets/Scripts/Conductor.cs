@@ -48,6 +48,8 @@ public class Conductor : MonoBehaviour
 
     AudioClip songClip;
 
+    public static string loadedSongFile;
+
     public PlayerInput p1;
 
     public WordManager wordManager;
@@ -56,69 +58,92 @@ public class Conductor : MonoBehaviour
     void Start()
     {
         //Get song metadata
-        songData = GetComponent<SongMetadata>();
+        //songData = GetComponent<SongMetadata>();
 
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
+        //musicSource = GetComponent<AudioSource>();
 
         //Get player inputs
-        p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
+        if (GameplayManager.isGameplay() == true)
+        {
+            p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
 
-        wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
+            wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
 
-        //Calculate the number of seconds in each beat
-        Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
-        secPerBeat = 60f / songBpm;
+            //Calculate the number of seconds in each beat
+            //Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
+            secPerBeat = 60f / songBpm;
 
-        //Record the time when the music starts
-        dspSongTime = (float)AudioSettings.dspTime;
+            //Record the time when the music starts
+            dspSongTime = (float)AudioSettings.dspTime;
 
-        musicSource.clip = songClip;
+            musicSource.clip = songClip;
 
-        //Start the music
-        musicSource.Play();
+            //Start the music
+            musicSource.Play();
+        }
+        else
+        {
+            p1 = null;
+            wordManager = null;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
-
-        //determine how many beats since the song started
-        songPositionInBeats = songPosition / secPerBeat;
-
-        //calculate the loop position
-        if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+        if (GameplayManager.isGameplay() == true)
         {
-            completedLoops++;
-            p1.SendMessage("onFinishLoop");
-            wordManager.SendMessage("addWord");
+            //determine how many seconds since the song started
+            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+
+            //determine how many beats since the song started
+            songPositionInBeats = songPosition / secPerBeat;
+
+            //calculate the loop position
+            if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+            {
+                completedLoops++;
+
+                p1.SendMessage("onFinishLoop");
+                wordManager.SendMessage("addWord");
+            }
+            loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
+
+            loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
+
+            setEvents();
         }
-        loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
-
-        loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
-
-        setEvents(songData);
     }
 
     void Awake()
     {
-        songData.ReadSongJSON();
-        songData.UpdateSongInfo();
-        songBpm = songData.bpm;
-        beatsPerLoop = songData.beats;
-        songClip = Resources.Load<AudioClip>("Sounds/" + songData.fileName);
+        if (GameplayManager.isGameplay() == true)
+        {
+            SongMetadata.ReadSongJSON(loadedSongFile);
+            SongMetadata.UpdateSongInfo();
+        }
+
+        songBpm = SongMetadata.bpm;
+        beatsPerLoop = SongMetadata.beats;
+        songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
+        
         conductor = this;
+        
     }
 
-    void setEvents(SongMetadata data)
+    public static void setFileName(string _fileName)
+    {
+        loadedSongFile = _fileName;
+    }
+
+    void setEvents()
     {
         // -- find a way to convery song start position to first beat offset variable --
-        float songStartEvent = data.songStart;
-        float playStartEvent = data.playStart;
-        float playEndEvent = data.playEnd;
-        float songEndEvent = data.songEnd;
+        float songStartEvent = SongMetadata.songStart;
+        float playStartEvent = SongMetadata.playStart;
+        float playEndEvent = SongMetadata.playEnd;
+        float songEndEvent = SongMetadata.songEnd;
 
         //song starts
         if (completedLoops == playStartEvent)

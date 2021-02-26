@@ -1378,7 +1378,7 @@ MonoBehaviour:
     e_playStart: 0
     e_playEnd: 0
     e_songEnd: 0
-  songPath: Assets/StreamingAssets/Kim Petras - Heart to Break.json
+  songPath: Assets/StreamingAssets/Bust a Groove OST - Kitty N.json
 --- !u!850595691 &1650366748
 LightingSettings:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     public GameObject SongSelectPanel;
     public GameObject HowToPlayPanel;
 
-    public GameObject Conductor;
+    public Conductor conductor;
 
     //location of song's jsonFile metadata
     public string jsonFile;
@@ -24,6 +24,8 @@ public class Menu : MonoBehaviour
     {
         //Get song metadata
         songData = GetComponent<SongMetadata>();
+
+        //GameplayManager.isGameplay() = false;
 
         MenuPanel.SetActive(true);
         SongSelectPanel.SetActive(false);
@@ -59,15 +61,15 @@ public class Menu : MonoBehaviour
         Debug.Log("How to Play Panel shown");
     }
 
-    public void LoadSong(string filePath)
+    public void LoadSong(string file)
     {
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
         SceneManager.LoadScene("Song Gameplay");
-        Debug.Log("Now loading " + filePath);
-        //jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
-        jsonFile = songFile(filePath);
+        Debug.Log("Now loading " + file);
+        jsonFile = songFile(file);
+        Conductor.setFileName(file);
     }
 
     string songFile(string songName)

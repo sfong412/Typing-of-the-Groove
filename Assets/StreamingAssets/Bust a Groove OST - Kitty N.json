@@ -1,13 +1,14 @@
 {
-    "data":
-      {
-        "title": "Heart to Break",
-        "artist": "Kim Petras",
-        "album": "Heart to Break - Single",
-        "genre": "Pop",
-        "year": 2018,
-
-        "bpm": 132,
-        "beats": 4
-  }
+  "fileName": "Bust a Groove OST - Kitty N",
+  "title": "Bust a Groove",
+  "artist": "Kitty-N",
+  "album": "Bust a Groove (PS1)",
+  "genre": "Pop",
+  "year": 1999,
+  "bpm": 132.04,
+  "beats": 4,
+  "e_songStart": 0,
+  "e_playStart": 8,
+  "e_playEnd": 101,
+  "e_songEnd": 103
 }

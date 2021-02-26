@@ -14,38 +14,38 @@ public class SongMetadata : MonoBehaviour
    // public string jsonString;
    
     //filename of the audio file
-    public string fileName;
+    public static string fileName;
     
     //String for song title
-    public string title;
+    public static string title;
 
     //String for artist / band of the song
-    public string artist;
+    public static string artist;
 
     //String for album name
-    public string album;
+    public static string album;
 
     //String for song genre
-    public string genre;
+    public static string genre;
 
     //String for release year of the song
-    public int year;
+    public static int year;
 
     //Interger for beats per minute (BPM)
-    public float bpm;
+    public static float bpm;
 
     //Number of beats
-    public int beats;
+    public static int beats;
 
-    public float songStart;
+    public static float songStart;
 
-    public float playStart;
+    public static float playStart;
 
-    public float playEnd;
+    public static float playEnd;
 
-    public float songEnd;
+    public static float songEnd;
 
-    public SongInfo song;
+    public static SongInfo song;
 
     // C# song path thingy
     public string songPath;
@@ -54,7 +54,7 @@ public class SongMetadata : MonoBehaviour
     void Start()
     {
         //Reads song JSON file
-        ReadSongJSON();
+       // ReadSongJSON();
     }
 
     // Update is called once per frame
@@ -64,16 +64,16 @@ public class SongMetadata : MonoBehaviour
     }
 
     //break this and the tempo will break
-    public void ReadSongJSON()//string filepath
+    public static void ReadSongJSON(string fileName)//string filepath
     {
-        string jsonFile = Application.streamingAssetsPath + "/Kim Petras - Heart to Break.json";
+        string jsonFile = Application.streamingAssetsPath + "/" + fileName+ ".json";
         //jsonFile = menu.jsonFile;
         string jsonString = File.ReadAllText(jsonFile);
         song = JsonUtility.FromJson<SongInfo>(jsonString);
         //Debug.Log(jsonFile);
     }
 
-    public void UpdateSongInfo()
+    public static void UpdateSongInfo()
     {
         fileName = song.fileName;
         title = song.title;
