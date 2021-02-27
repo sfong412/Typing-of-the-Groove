@@ -7,12 +7,6 @@ public class SongMetadata : MonoBehaviour
 {
     Menu menu;
     
-    //JSON object
-   // public string jsonFile;
-
-    //JSON string
-   // public string jsonString;
-   
     //filename of the audio file
     public static string fileName;
     
@@ -53,24 +47,19 @@ public class SongMetadata : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Reads song JSON file
-       // ReadSongJSON();
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     //break this and the tempo will break
     public static void ReadSongJSON(string fileName)//string filepath
     {
-        string jsonFile = Application.streamingAssetsPath + "/" + fileName+ ".json";
-        //jsonFile = menu.jsonFile;
+        string jsonFile = Application.dataPath + "/Resources/Sounds/" + fileName + ".json";
         string jsonString = File.ReadAllText(jsonFile);
         song = JsonUtility.FromJson<SongInfo>(jsonString);
-        //Debug.Log(jsonFile);
     }
 
     public static void UpdateSongInfo()

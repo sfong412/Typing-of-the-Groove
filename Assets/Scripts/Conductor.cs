@@ -118,6 +118,8 @@ public class Conductor : MonoBehaviour
 
     void Awake()
     {
+       // loadedSongFile = "Kim Petras - Heart to Break";
+        
         if (GameplayManager.isGameplay() == true)
         {
             SongMetadata.ReadSongJSON(loadedSongFile);

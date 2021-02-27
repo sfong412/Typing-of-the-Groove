@@ -21,14 +21,14 @@ public class GameplayUI : MonoBehaviour
     //public hitStatus status;
 
     //change ALL text to textmeshpro
-    public Text p1ScoreUI;
-    public Text p2ScoreUI;
+    public TextMeshProUGUI p1ScoreUI;
+    public TextMeshProUGUI p2ScoreUI;
 
     public Image p1GrooveUI;
     public Image p1GrooveHitUI;
 
-    public Text p1GrooveText;
-    public Text p1GrooveHitText;
+    public TextMeshProUGUI p1GrooveText;
+    public TextMeshProUGUI p1GrooveHitText;
 
     private float redValue;
     private float grooveOpacity;
@@ -37,10 +37,10 @@ public class GameplayUI : MonoBehaviour
     private Color offBeat;
     private Color failColor;
 
-    public Text hitStatusText;
-    public Text comboText;
+    public TextMeshProUGUI hitStatusText;
+    public TextMeshProUGUI comboText;
 
-    public Text wordText;
+    public TextMeshProUGUI wordText;
 
     public TextMeshProUGUI readyText;
 
@@ -73,13 +73,13 @@ public class GameplayUI : MonoBehaviour
         p1GrooveUI = GameObject.Find("P1 Groovetron").GetComponent<Image>();
         p1GrooveHitUI = GameObject.Find("P1 Groovetron On Hit").GetComponent<Image>();
 
-        p1GrooveText = GameObject.Find("P1 Groovetron Text").GetComponent<Text>();
-        p1GrooveHitText = GameObject.Find("P1 Groovetron On Hit Text").GetComponent<Text>();
+        p1GrooveText = GameObject.Find("P1 Groovetron Text").GetComponent<TextMeshProUGUI>();
+        p1GrooveHitText = GameObject.Find("P1 Groovetron On Hit Text").GetComponent<TextMeshProUGUI>();
 
-        p1ScoreUI = GameObject.Find("P1 Scoreboard Score").GetComponent<Text>();
+        p1ScoreUI = GameObject.Find("P1 Scoreboard Score").GetComponent<TextMeshProUGUI>();
 
-        hitStatusText = GameObject.Find("Hit Status Text").GetComponent<Text>();
-        comboText = GameObject.Find("Combo Text").GetComponent<Text>();
+        hitStatusText = GameObject.Find("Hit Status Text").GetComponent<TextMeshProUGUI>();
+        comboText = GameObject.Find("Combo Text").GetComponent<TextMeshProUGUI>();
 
         readyText = GameObject.Find("Ready Text").GetComponent<TextMeshProUGUI>();
 
@@ -172,7 +172,7 @@ public class GameplayUI : MonoBehaviour
     }
 
     //fix this mess of a code
-    public void changeScore(Text t, GameplayManager g, int i) {
+    public void changeScore(TextMeshProUGUI t, GameplayManager g, int i) {
         if (i == 1)
         {
             t.text = p1.score.ToString();
@@ -219,7 +219,7 @@ public class GameplayUI : MonoBehaviour
         hitStatusText.text = "Level Up!";
     }
 
-    public IEnumerator FadeTextToZeroAlpha(float t, Text i)
+    public IEnumerator FadeTextToZeroAlpha(float t, TextMeshProUGUI i)
     {
         i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
         yield return new WaitForSeconds(1);
@@ -246,14 +246,12 @@ public class GameplayUI : MonoBehaviour
     {
         p1GrooveText.text = word;
         redValue = 0;
-        //p1GrooveText.color = new Color(0f, 0f, 0f, grooveOpacity);
     }
 
     public void removeLetter()
     {
         p1GrooveText.text = p1GrooveText.text.Remove(0,1);
         redValue = 1;
-        //p1GrooveText.color = new Color(1f, 0f, 0f, grooveOpacity);
     }
 
     public void removeWord()
@@ -263,7 +261,6 @@ public class GameplayUI : MonoBehaviour
     public void setLetter(char letter)
     {
         p1GrooveHitText.text = letter.ToString();
-      //  p1GrooveHitText.color = new Color(0f, 0f, 0f, grooveOpacity);
     }
 
     //for lighting the beat indicator under the groovetron
@@ -319,6 +316,5 @@ public class GameplayUI : MonoBehaviour
     void onPlayState()
     {
         readyText.color = new Color(readyText.color.r, readyText.color.g, readyText.color.b, 0);
-      //  Debug.Log(t);
     }
 }
