@@ -118,7 +118,7 @@ public class Conductor : MonoBehaviour
 
     void Awake()
     {
-       // loadedSongFile = "Kim Petras - Heart to Break";
+        //loadedSongFile = "Bust a Groove OST - Kitty N";
         
         if (GameplayManager.isGameplay() == true)
         {
@@ -143,6 +143,7 @@ public class Conductor : MonoBehaviour
     {
         // -- find a way to convery song start position to first beat offset variable --
         float songStartEvent = SongMetadata.songStart;
+        firstBeatOffset = (float)SongMetadata.offset;
         float playStartEvent = SongMetadata.playStart;
         float playEndEvent = SongMetadata.playEnd;
         float songEndEvent = SongMetadata.songEnd;

@@ -31,6 +31,8 @@ public class SongMetadata : MonoBehaviour
     //Number of beats
     public static int beats;
 
+    public static float offset;
+
     public static float songStart;
 
     public static float playStart;
@@ -72,6 +74,7 @@ public class SongMetadata : MonoBehaviour
         year = song.year;
         bpm = song.bpm;
         beats = song.beats;
+        offset = song.offset;
 
         songStart = song.e_songStart;
         playStart = song.e_playStart;
@@ -109,6 +112,8 @@ public class SongMetadata : MonoBehaviour
 
         //Number of beats
         public int beats;
+
+        public float offset;
 
         //4/4 beat position of 1st beat
         public float e_songStart;

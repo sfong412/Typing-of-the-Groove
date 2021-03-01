@@ -7,6 +7,7 @@
     "year": 2018,
     "bpm": 109,
     "beats": 4,
+    "offset": 0.052,
     
     "e_songStart": 0,
     "e_playStart": 2,
