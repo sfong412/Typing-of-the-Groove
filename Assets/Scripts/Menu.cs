@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
 
-    public SongMetadata songData;
+    //public SongMetadata songData;
 
     public GameObject MenuPanel;
     public GameObject SongSelectPanel;
@@ -23,7 +23,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         //Get song metadata
-        songData = GetComponent<SongMetadata>();
+       // songData = GetComponent<SongMetadata>();
 
         //GameplayManager.isGameplay() = false;
 

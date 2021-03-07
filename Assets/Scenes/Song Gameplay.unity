@@ -1593,7 +1593,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffec2f0e411d7dd41b9af27f5ee5a919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songData: {fileID: 1631400280}
+  songData: {fileID: 0}
   songBpm: 0
   secPerBeat: 0
   songPosition: 0
@@ -2321,6 +2321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73f69eea81d107469094bd80d6e0f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 0
   myHitStatus: 0
 --- !u!224 &2114532432 stripped
 RectTransform:

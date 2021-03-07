@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[System.Serializable]
 public class SongMetadata : MonoBehaviour
 {
     Menu menu;
@@ -59,9 +60,13 @@ public class SongMetadata : MonoBehaviour
     //break this and the tempo will break
     public static void ReadSongJSON(string fileName)//string filepath
     {
+        /*
         string jsonFile = Application.dataPath + "/Resources/Sounds/" + fileName + ".json";
         string jsonString = File.ReadAllText(jsonFile);
-        song = JsonUtility.FromJson<SongInfo>(jsonString);
+        */
+
+        TextAsset jsonFile = Resources.Load("Sounds/" + fileName) as TextAsset;
+        song = JsonUtility.FromJson<SongInfo>(jsonFile.text);
     }
 
     public static void UpdateSongInfo()

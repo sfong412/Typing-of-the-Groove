@@ -13,6 +13,13 @@ public enum hitStatus
     
 public class GameplayManager : MonoBehaviour
 {
+    public int difficulty;
+
+    void start() 
+    {
+        WordGenerator.wordDifficulty = 1;
+        difficulty = WordGenerator.wordDifficulty;
+    }
 
     private int[] numberOfPlayers =
     {

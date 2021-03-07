@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class Conductor : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class Conductor : MonoBehaviour
     public float loopPositionInAnalog;
 
     //Conductor instance
-    public static Conductor conductor;
+    //public static Conductor conductor;
 
     //an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
@@ -54,18 +55,57 @@ public class Conductor : MonoBehaviour
 
     public WordManager wordManager;
 
+    void Awake()
+    {
+        //loadedSongFile = "Bust a Groove OST - Kitty N";
+        
+        if (GameplayManager.isGameplay() == true)
+        {
+            SongMetadata.ReadSongJSON(loadedSongFile);
+            SongMetadata.UpdateSongInfo();
+        }
+
+        
+        
+        //conductor = this;
+        
+    }
+
+    void OnEnable()
+    {
+        if (GameplayManager.isGameplay() == true)
+        {
+            p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
+
+            wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
+
+            songBpm = SongMetadata.bpm;
+            beatsPerLoop = SongMetadata.beats;
+            songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
+
+            //Calculate the number of seconds in each beat
+            //Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
+            secPerBeat = 60f / songBpm;
+
+            //Record the time when the music starts
+            dspSongTime = (float)AudioSettings.dspTime;
+
+            musicSource.clip = songClip;
+        }
+        else
+        {
+            p1 = null;
+            wordManager = null;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //Get song metadata
-        //songData = GetComponent<SongMetadata>();
-
-        //Load the AudioSource attached to the Conductor GameObject
-        //musicSource = GetComponent<AudioSource>();
-
         //Get player inputs
-        if (GameplayManager.isGameplay() == true)
+        if (GameplayManager.isGameplay() == true && SceneManager.GetActiveScene().name == "Song Gameplay" && SceneManager.GetActiveScene().isLoaded == true)
         {
+            /*
             p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
 
             wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
@@ -78,21 +118,22 @@ public class Conductor : MonoBehaviour
             dspSongTime = (float)AudioSettings.dspTime;
 
             musicSource.clip = songClip;
+            */
 
             //Start the music
             musicSource.Play();
         }
         else
         {
-            p1 = null;
-            wordManager = null;
+            //p1 = null;
+            //wordManager = null;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameplayManager.isGameplay() == true)
+        if (GameplayManager.isGameplay() == true && SceneManager.GetActiveScene().name == "Song Gameplay" && SceneManager.GetActiveScene().isLoaded == true)
         {
             //determine how many seconds since the song started
             songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
@@ -116,23 +157,7 @@ public class Conductor : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        //loadedSongFile = "Bust a Groove OST - Kitty N";
-        
-        if (GameplayManager.isGameplay() == true)
-        {
-            SongMetadata.ReadSongJSON(loadedSongFile);
-            SongMetadata.UpdateSongInfo();
-        }
 
-        songBpm = SongMetadata.bpm;
-        beatsPerLoop = SongMetadata.beats;
-        songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
-        
-        conductor = this;
-        
-    }
 
     public static void setFileName(string _fileName)
     {

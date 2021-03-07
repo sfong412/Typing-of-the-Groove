@@ -1585,7 +1585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae0e93ee83f5d24d927f13731939cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songData: {fileID: 0}
   MenuPanel: {fileID: 1215633397}
   SongSelectPanel: {fileID: 1160892827}
   HowToPlayPanel: {fileID: 1633943726}
@@ -2036,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1215633398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2500,7 +2499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd63eb5a915bae046be5a647e26d0ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songPath: Assets/StreamingAssets/Bust a Groove OST - Kitty N.json
+  songPath: 
 --- !u!82 &1541874196
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2512,7 +2511,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2609,7 +2608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffec2f0e411d7dd41b9af27f5ee5a919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songData: {fileID: 1541874195}
+  songData: {fileID: 0}
   songBpm: 0
   secPerBeat: 0
   songPosition: 0
@@ -2654,7 +2653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1633943727
 RectTransform:
   m_ObjectHideFlags: 0
