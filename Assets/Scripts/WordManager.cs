@@ -45,7 +45,7 @@ public class WordManager : MonoBehaviour
             hasActiveWord = false;
             words.Remove(words[0]);
 
-            Word word = new Word(WordGenerator.getRandomWord(),  LetterGenerator.getRandomLetter(),gameplayUI, playerInput);
+            Word word = new Word(WordGenerator.getRandomWord(), LetterGenerator.getRandomLetter(),gameplayUI, playerInput);
          //   Debug.Log(word.word);
             words.Add(word); 
         }

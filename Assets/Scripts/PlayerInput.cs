@@ -109,6 +109,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     wordManager.typeLetter(letter);
                 }
+                Debug.Log(isLevelingUp() + " " + comboCounter.ToString() + " Difficulty: " + WordGenerator.wordDifficulty);
             }
         }
         menuButton();
@@ -116,14 +117,13 @@ public class PlayerInput : MonoBehaviour
 
     void DetectHit(char c) 
     {
-        //checks if active word is typed, the correct key is pressed & is on the correct 4th beat timing
         if (wordManager.words.Count == 0 && c == beatLetter && conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
         {   
              myHitStatus = hitStatus.hitPass;
         } 
         else if (myHitStatus != hitStatus.hitPass)
         {
-            if (failCounter < 5)
+            if (failCounter < 5 && wordManager.words.Count == 0)
             {
                 failCounter = failCounter + 1;
             }
@@ -134,8 +134,12 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void hitFail() {
-      //  failCounter = failCounter + 1;
+    void hitFail() 
+    {
+        if (failCounter < 5 && wordManager.words.Count != 0)
+        {
+            failCounter = failCounter + 1;
+        }
 
         if (failCounter == 5)
         {
@@ -147,14 +151,24 @@ public class PlayerInput : MonoBehaviour
     {
         failCounter = 0;
 
-        if (myHitStatus == hitStatus.hitPass)
+        if (myHitStatus == hitStatus.hitPass && isLevelingUp() == false)
             {
                 callHitSuccess();
 
+                if (comboCounter == 9)
+                {
+                    unsetPlayableState();
+                }
+
             } 
-        else if (myHitStatus != hitStatus.hitPass)
+        else if (myHitStatus != hitStatus.hitPass && isLevelingUp() == false)
             {
                 callHitFail();
+            }
+        else if (isLevelingUp() == true)
+            {
+                setPlayableState();
+                comboCounter = 1;
             }
      }
 
@@ -172,7 +186,7 @@ public class PlayerInput : MonoBehaviour
             failCounter = 0;
             comboCounter = comboCounter + 1;
             score = score + scoreBasedOnCombo[comboCounter];    
-            if (comboCounter == 9) 
+            if (comboCounter == 10) 
             {
                 comboCounter = 1;
             }   
@@ -215,6 +229,7 @@ public class PlayerInput : MonoBehaviour
 
     public void goToMenu()
     {
+        Resources.UnloadUnusedAssets();
         SceneManager.LoadScene("Song Menu");
     }
 
@@ -227,5 +242,25 @@ public class PlayerInput : MonoBehaviour
     void unsetPlayableState()
     {
         playableState = false;
+    }
+
+    void onLevelingUp()
+    {
+
+    }
+
+    bool isLevelingUp()
+    {
+        bool levelUp;
+
+        //combo counter 9 is the freeze phase
+        if (comboCounter == 9)
+        {
+            return levelUp = true;
+        }
+        else
+        {
+            return levelUp = false;
+        }
     }
 }

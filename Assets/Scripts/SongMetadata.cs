@@ -60,11 +60,6 @@ public class SongMetadata : MonoBehaviour
     //break this and the tempo will break
     public static void ReadSongJSON(string fileName)//string filepath
     {
-        /*
-        string jsonFile = Application.dataPath + "/Resources/Sounds/" + fileName + ".json";
-        string jsonString = File.ReadAllText(jsonFile);
-        */
-
         TextAsset jsonFile = Resources.Load("Sounds/" + fileName) as TextAsset;
         song = JsonUtility.FromJson<SongInfo>(jsonFile.text);
     }

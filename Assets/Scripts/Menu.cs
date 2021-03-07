@@ -68,7 +68,7 @@ public class Menu : MonoBehaviour
         HowToPlayPanel.SetActive(false);
         SceneManager.LoadScene("Song Gameplay");
         Debug.Log("Now loading " + file);
-        jsonFile = songFile(file);
+        //jsonFile = songFile(file);
         Conductor.setFileName(file);
     }
 
@@ -80,6 +80,7 @@ public class Menu : MonoBehaviour
 
     public void QuitGame()
     {
+        Resources.UnloadUnusedAssets();
         Application.Quit();
     }
 }

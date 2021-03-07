@@ -55,6 +55,8 @@ public class Conductor : MonoBehaviour
 
     public WordManager wordManager;
 
+
+    //fix song loading thing
     void Awake()
     {
         //loadedSongFile = "Bust a Groove OST - Kitty N";
@@ -65,14 +67,48 @@ public class Conductor : MonoBehaviour
             SongMetadata.UpdateSongInfo();
         }
 
-        
-        
         //conductor = this;
         
     }
 
     void OnEnable()
     {
+        if (GameplayManager.isGameplay() == true)
+        {
+            /*
+            p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
+
+            wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
+
+            songBpm = SongMetadata.bpm;
+            beatsPerLoop = SongMetadata.beats;
+            songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
+
+            //Calculate the number of seconds in each beat
+            //Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
+            secPerBeat = 60f / songBpm;
+
+            //Record the time when the music starts
+            dspSongTime = (float)AudioSettings.dspTime;
+
+            musicSource.clip = songClip;
+            */
+        }
+        else
+        {
+            /*
+            p1 = null;
+            wordManager = null;
+            */
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+      //  waitUntilLoaded();
+
+        //Get player inputs
         if (GameplayManager.isGameplay() == true)
         {
             p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
@@ -91,6 +127,9 @@ public class Conductor : MonoBehaviour
             dspSongTime = (float)AudioSettings.dspTime;
 
             musicSource.clip = songClip;
+
+            //Start the music
+            musicSource.Play();
         }
         else
         {
@@ -99,42 +138,13 @@ public class Conductor : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Get player inputs
-        if (GameplayManager.isGameplay() == true && SceneManager.GetActiveScene().name == "Song Gameplay" && SceneManager.GetActiveScene().isLoaded == true)
-        {
-            /*
-            p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
-
-            wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
-
-            //Calculate the number of seconds in each beat
-            //Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
-            secPerBeat = 60f / songBpm;
-
-            //Record the time when the music starts
-            dspSongTime = (float)AudioSettings.dspTime;
-
-            musicSource.clip = songClip;
-            */
-
-            //Start the music
-            musicSource.Play();
-        }
-        else
-        {
-            //p1 = null;
-            //wordManager = null;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (GameplayManager.isGameplay() == true && SceneManager.GetActiveScene().name == "Song Gameplay" && SceneManager.GetActiveScene().isLoaded == true)
+        if (GameplayManager.isGameplay() == true && musicSource.isPlaying == true)
         {
+            setEvents();
+
             //determine how many seconds since the song started
             songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
@@ -152,12 +162,8 @@ public class Conductor : MonoBehaviour
             loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
             loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
-
-            setEvents();
         }
     }
-
-
 
     public static void setFileName(string _fileName)
     {
@@ -189,7 +195,13 @@ public class Conductor : MonoBehaviour
         if (completedLoops == songEndEvent)
         {
             // -- record score function --
+            Resources.UnloadUnusedAssets();
             p1.goToMenu();
         }
+    }
+
+    public IEnumerator waitUntilLoaded()
+    {
+        yield return new WaitForSeconds(3);
     }
 }

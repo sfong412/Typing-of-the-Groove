@@ -196,7 +196,7 @@ public class GameplayUI : MonoBehaviour
             hitStatusText.text = "Great!";
         }
 
-        if (p1.comboCounter == 8)
+        if (p1.comboCounter == 9)
         {
             onCompleteCombo();
         } 
