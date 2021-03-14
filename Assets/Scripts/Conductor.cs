@@ -47,7 +47,7 @@ public class Conductor : MonoBehaviour
     //an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
 
-    AudioClip songClip;
+    public static AudioClip songClip;
 
     public static string loadedSongFile;
 
@@ -55,17 +55,17 @@ public class Conductor : MonoBehaviour
 
     public WordManager wordManager;
 
+    Scene scene;
 
     //fix song loading thing
     void Awake()
     {
+       // scene = SceneManager.GetActiveScene();
+        //Debug.Log(scene.name);
+
         //loadedSongFile = "Bust a Groove OST - Kitty N";
         
-        if (GameplayManager.isGameplay() == true)
-        {
-            SongMetadata.ReadSongJSON(loadedSongFile);
-            SongMetadata.UpdateSongInfo();
-        }
+        
 
         //conductor = this;
         
@@ -75,38 +75,25 @@ public class Conductor : MonoBehaviour
     {
         if (GameplayManager.isGameplay() == true)
         {
-            /*
-            p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
 
-            wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
-
-            songBpm = SongMetadata.bpm;
-            beatsPerLoop = SongMetadata.beats;
-            songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
-
-            //Calculate the number of seconds in each beat
-            //Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
-            secPerBeat = 60f / songBpm;
-
-            //Record the time when the music starts
-            dspSongTime = (float)AudioSettings.dspTime;
-
-            musicSource.clip = songClip;
-            */
         }
         else
         {
-            /*
-            p1 = null;
-            wordManager = null;
-            */
+
         }
     }
 
+
+    // BUG: desync happens when loading the song for the first time [first 2 bars for 1st time]
+    
     // Start is called before the first frame update
     void Start()
     {
-      //  waitUntilLoaded();
+        if (GameplayManager.isGameplay() == true)
+        {
+            SongMetadata.ReadSongJSON(loadedSongFile);
+            SongMetadata.UpdateSongInfo();
+        }
 
         //Get player inputs
         if (GameplayManager.isGameplay() == true)
@@ -120,7 +107,6 @@ public class Conductor : MonoBehaviour
             songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
 
             //Calculate the number of seconds in each beat
-            //Debug.Log("Song: " + songData.title + ". The BPM is " + songBpm);
             secPerBeat = 60f / songBpm;
 
             //Record the time when the music starts
@@ -140,29 +126,33 @@ public class Conductor : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (GameplayManager.isGameplay() == true && musicSource.isPlaying == true)
+    {   
+        setEvents();
+
+        //only start if music is playing
+        if (musicSource.isPlaying == false)
         {
-            setEvents();
-
-            //determine how many seconds since the song started
-            songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
-
-            //determine how many beats since the song started
-            songPositionInBeats = songPosition / secPerBeat;
-
-            //calculate the loop position
-            if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
-            {
-                completedLoops++;
-
-                p1.SendMessage("onFinishLoop");
-                wordManager.SendMessage("addWord");
-            }
-            loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
-
-            loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
+            return;
         }
+
+        //determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+
+        //determine how many beats since the song started
+        songPositionInBeats = songPosition / secPerBeat;
+
+        //calculate the loop position
+        if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+        {
+            completedLoops++;
+
+            p1.onFinishLoop();
+            wordManager.addWord();
+        }
+
+        loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
+
+        loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
     }
 
     public static void setFileName(string _fileName)
@@ -172,7 +162,6 @@ public class Conductor : MonoBehaviour
 
     void setEvents()
     {
-        // -- find a way to convery song start position to first beat offset variable --
         float songStartEvent = SongMetadata.songStart;
         firstBeatOffset = (float)SongMetadata.offset;
         float playStartEvent = SongMetadata.playStart;
@@ -182,8 +171,7 @@ public class Conductor : MonoBehaviour
         //song starts
         if (completedLoops == playStartEvent)
         {
-            //p1.playableState = true;
-            p1.SendMessage("setPlayableState");
+            p1.setPlayableState();
         }
 
         //song ends
@@ -194,14 +182,21 @@ public class Conductor : MonoBehaviour
 
         if (completedLoops == songEndEvent)
         {
-            // -- record score function --
-            Resources.UnloadUnusedAssets();
+            // -- TO ADD: record score function --
             p1.goToMenu();
+            Resources.UnloadAsset(Conductor.songClip);
+            WordGenerator.wordDifficulty = 1;
         }
     }
 
-    public IEnumerator waitUntilLoaded()
+    public IEnumerator waitAndPlay()
     {
-        yield return new WaitForSeconds(3);
+        // Wait a frame so every Awake and Start method is called
+        //yield return new WaitForEndOfFrame();
+
+        while (SceneManager.GetActiveScene().name == "Song Gameplay")
+        {
+          yield return new WaitForSeconds(5);
+        }
     }
 }

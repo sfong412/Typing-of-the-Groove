@@ -66,10 +66,9 @@ public class Menu : MonoBehaviour
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
-        SceneManager.LoadScene("Song Gameplay");
         Debug.Log("Now loading " + file);
-        //jsonFile = songFile(file);
         Conductor.setFileName(file);
+        SceneManager.LoadScene("Song Gameplay", LoadSceneMode.Single);
     }
 
     string songFile(string songName)

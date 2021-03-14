@@ -42,9 +42,27 @@ public class PlayerInput : MonoBehaviour
         320, //cool
         640, //chillin'
         1280, //freeze!
-        0,
-        0,
-        0
+        2560,
+        5120,
+        10240
+    };
+
+    //Score multiplier based on word generator difficulty
+    // TO-DO -- ADD FUNCTION IF WORD DIFFICULTY MAXES OUT TO END OF ARRAY
+    private float[] scoreMultiplier =
+    {
+        (float)0,
+        (float)1,
+        (float)2,
+        (float)3,
+        (float)4,
+        (float)5,
+        (float)6,
+        (float)7,
+        (float)8,
+        (float)9,
+        (float)10,
+        (float)11
     };
 
     //Keeps track of failed button inputs in a beat
@@ -69,8 +87,6 @@ public class PlayerInput : MonoBehaviour
     char beatLetter;
 
     public bool playableState;
-
-  //  public WordManager wordManager;
 
     // Start is called before the first frame update
     void Start()
@@ -147,7 +163,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void onFinishLoop()
+    public void onFinishLoop()
     {
         failCounter = 0;
 
@@ -159,7 +175,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     unsetPlayableState();
                 }
-
+            score = score + (scoreBasedOnCombo[comboCounter] * scoreMultiplier[setMultiplier(WordGenerator.wordDifficulty)]);
             } 
         else if (myHitStatus != hitStatus.hitPass && isLevelingUp() == false)
             {
@@ -185,7 +201,7 @@ public class PlayerInput : MonoBehaviour
             myHitStatus = hitStatus.hitNotDone;
             failCounter = 0;
             comboCounter = comboCounter + 1;
-            score = score + scoreBasedOnCombo[comboCounter];    
+            //score = score + (scoreBasedOnCombo[comboCounter] * scoreMultiplier[setMultiplier(WordGenerator.wordDifficulty)]);    
             if (comboCounter == 10) 
             {
                 comboCounter = 1;
@@ -214,6 +230,18 @@ public class PlayerInput : MonoBehaviour
         beatLetter = letter;
     }
 
+    public int setMultiplier(int difficulty)
+    {
+        if (comboCounter == 9)
+        {
+            return difficulty - 1;
+        }
+        else
+        {
+            return difficulty;
+        }
+    }
+
     public hitStatus GetHitStatus()
     {
         return myHitStatus;
@@ -229,17 +257,17 @@ public class PlayerInput : MonoBehaviour
 
     public void goToMenu()
     {
-        Resources.UnloadUnusedAssets();
         SceneManager.LoadScene("Song Menu");
+        Resources.UnloadAsset(Conductor.songClip);
     }
 
-    void setPlayableState()
+    public void setPlayableState()
     {
         playableState = true;
         ui.SendMessage("onPlayState");
     }
 
-    void unsetPlayableState()
+    public void unsetPlayableState()
     {
         playableState = false;
     }

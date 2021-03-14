@@ -49,6 +49,9 @@ public class GameplayUI : MonoBehaviour
     public Image beatIndicator3;
     public Image beatIndicator4;
 
+    public AudioSource sfxPlayer;
+    public AudioClip comboCompleteSfx;
+
     public bool haveBG;
 
     public bool isScore;
@@ -216,7 +219,9 @@ public class GameplayUI : MonoBehaviour
     void onCompleteCombo()
     {
         WordGenerator.changeListDifficulty();
+        comboText.text = "";
         hitStatusText.text = "Level Up!";
+        sfxPlayer.Play();
     }
 
     public IEnumerator FadeTextToZeroAlpha(float t, TextMeshProUGUI i)

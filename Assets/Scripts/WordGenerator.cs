@@ -38,6 +38,7 @@ public class WordGenerator : MonoBehaviour
     }
 
     //selects word based on word length by current difficulty level
+    // TO-DO: FIND A WAY TO REDUCE DUPLICATE CODE ON THIS
     static int selectWordsBasedOnDifficulty(int i)
     {
         int selector = 0;
@@ -57,9 +58,24 @@ public class WordGenerator : MonoBehaviour
             int[] selectDifficulty = {2, 3, 4};
             selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
         }
-        else if (i > 3)
+        else if (i == 4)
         {
-            int[] selectDifficulty = {3, 4};
+            int[] selectDifficulty = {3, 4, 5};
+            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+        }
+        else if (i == 5)
+        {
+            int[] selectDifficulty = {4, 5, 6};
+            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+        }
+        else if (i == 6)
+        {
+            int[] selectDifficulty = {4, 5, 6, 7};
+            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+        }
+        else if (i > 7)
+        {
+            int[] selectDifficulty = {5, 6, 7, 8};
             selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
         }
         return selector;
