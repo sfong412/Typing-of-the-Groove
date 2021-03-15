@@ -82,7 +82,7 @@ public class PlayerInput : MonoBehaviour
 
     public WordGenerator letterGenerator;
 
-    public Animator dancer;
+    public SyncedAnimation dancer;
 
     char beatLetter;
 
@@ -206,8 +206,8 @@ public class PlayerInput : MonoBehaviour
             {
                 comboCounter = 1;
             }   
-            ui.SendMessage("onHitSuccess");
-            dancer.SendMessage("onHitSuccess");
+            ui.onHitSuccess();
+            dancer.onHitSuccess();
         }
         return;
     }
@@ -219,8 +219,8 @@ public class PlayerInput : MonoBehaviour
             myHitStatus = hitStatus.hitNotDone;
             failCounter = 0;
             comboCounter = 1;
-            ui.SendMessage("onHitFail");
-            dancer.SendMessage("onHitFail");
+            ui.onHitFail();
+            dancer.onHitFail();
         }
         return;
     }
@@ -264,7 +264,7 @@ public class PlayerInput : MonoBehaviour
     public void setPlayableState()
     {
         playableState = true;
-        ui.SendMessage("onPlayState");
+        ui.showReadyText(0);
     }
 
     public void unsetPlayableState()

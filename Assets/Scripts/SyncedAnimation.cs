@@ -56,7 +56,7 @@ public class SyncedAnimation : MonoBehaviour
         animator.speed = 0;
     }
 
-    void onHitSuccess()
+    public void onHitSuccess()
     {
         int randomIndex = Random.Range(0, danceList.Length);
         danceState = danceList[randomIndex];
@@ -64,7 +64,7 @@ public class SyncedAnimation : MonoBehaviour
         currentState = danceState;
     }
 
-    void onHitFail()
+    public void onHitFail()
     {
        currentState = idleState;
     }

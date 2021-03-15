@@ -490,7 +490,7 @@ MonoBehaviour:
   ui: {fileID: 0}
   wordManager: {fileID: 1925433134}
   letterGenerator: {fileID: 0}
-  dancer: {fileID: 1595828288}
+  dancer: {fileID: 1595828289}
   playableState: 0
 --- !u!1 &487607299
 GameObject:
@@ -1794,11 +1794,13 @@ MonoBehaviour:
   firstBeatOffset: 0
   beatsPerLoop: 0
   completedLoops: 0
+  musicStarted: 0
   loopPositionInBeats: 0
   loopPositionInAnalog: 0
   musicSource: {fileID: 1631400277}
   p1: {fileID: 0}
   wordManager: {fileID: 1925433134}
+  ui: {fileID: 1690692733}
 --- !u!4 &1631400279
 Transform:
   m_ObjectHideFlags: 0

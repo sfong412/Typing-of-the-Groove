@@ -92,6 +92,8 @@ public class GameplayUI : MonoBehaviour
 
         failColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
+        readyText.color = new Color(1f, 1f, 1f, 0f);
+
         redValue = 0;
         grooveOpacity = 1;
 
@@ -186,7 +188,7 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    void onHitSuccess()
+    public void onHitSuccess()
     {
         if (p1.comboCounter == 1)
         {
@@ -208,7 +210,7 @@ public class GameplayUI : MonoBehaviour
         return;
     }
 
-    void onHitFail()
+    public void onHitFail()
     {
         comboText.text = "";
         hitStatusText.text = "Miss!";
@@ -216,7 +218,7 @@ public class GameplayUI : MonoBehaviour
         return;
     }
 
-    void onCompleteCombo()
+    public void onCompleteCombo()
     {
         WordGenerator.changeListDifficulty();
         comboText.text = "";
@@ -318,8 +320,8 @@ public class GameplayUI : MonoBehaviour
         return;
     }
 
-    void onPlayState()
+    public void showReadyText(int opacity)
     {
-        readyText.color = new Color(readyText.color.r, readyText.color.g, readyText.color.b, 0);
+        readyText.color = new Color(readyText.color.r, readyText.color.g, readyText.color.b, opacity);
     }
 }
