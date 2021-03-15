@@ -272,11 +272,6 @@ public class PlayerInput : MonoBehaviour
         playableState = false;
     }
 
-    void onLevelingUp()
-    {
-
-    }
-
     bool isLevelingUp()
     {
         bool levelUp;

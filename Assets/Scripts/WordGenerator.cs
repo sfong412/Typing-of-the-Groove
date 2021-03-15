@@ -42,41 +42,84 @@ public class WordGenerator : MonoBehaviour
     static int selectWordsBasedOnDifficulty(int i)
     {
         int selector = 0;
-
-        if (i == 1)
+        switch (Settings.gameDifficulty)
         {
-            int[] selectDifficulty = {1, 2};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
-        }
-        else if (i == 2)
-        {
-            int[] selectDifficulty = {1, 2, 3};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
-        }
-        else if (i == 3)
-        {
-            int[] selectDifficulty = {2, 3, 4};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
-        }
-        else if (i == 4)
-        {
-            int[] selectDifficulty = {3, 4, 5};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
-        }
-        else if (i == 5)
-        {
-            int[] selectDifficulty = {4, 5, 6};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
-        }
-        else if (i == 6)
-        {
-            int[] selectDifficulty = {4, 5, 6, 7};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
-        }
-        else if (i > 7)
-        {
-            int[] selectDifficulty = {5, 6, 7, 8};
-            selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+            //easy difficulty
+            case 1:
+                if (i == 1)
+                {
+                    int[] selectDifficulty = {1, 2};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 2)
+                {
+                    int[] selectDifficulty = {1, 2, 3};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 3)
+                {
+                    int[] selectDifficulty = {2, 3};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 4)
+                {
+                    int[] selectDifficulty = {2, 3, 4};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 5)
+                {
+                    int[] selectDifficulty = {3, 4};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 6)
+                {
+                    int[] selectDifficulty = {3, 4, 5};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i > 6)
+                {
+                    int[] selectDifficulty = {3, 4, 5, 6};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                break;
+            //normal difficulty
+            case 2:
+                if (i == 1)
+                {
+                    int[] selectDifficulty = {1, 2};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 2)
+                {
+                    int[] selectDifficulty = {1, 2, 3};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 3)
+                {
+                    int[] selectDifficulty = {2, 3, 4};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 4)
+                {
+                    int[] selectDifficulty = {3, 4, 5};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 5)
+                {
+                    int[] selectDifficulty = {4, 5, 6};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i == 6)
+                {
+                    int[] selectDifficulty = {4, 5, 6, 7};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                else if (i > 6)
+                {
+                    int[] selectDifficulty = {5, 6, 7, 8};
+                    selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
+                }
+                break;
         }
         return selector;
     }

@@ -78,16 +78,10 @@ public class Conductor : MonoBehaviour
     void OnEnable()
     {
     }
-        
+
     // Start is called before the first frame update
     void Start()
     {
-        if (GameplayManager.isGameplay() == true)
-        {
-           // SongMetadata.ReadSongJSON(loadedSongFile);
-           // SongMetadata.UpdateSongInfo();
-        }
-
         //Get player inputs
         p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
 
@@ -109,8 +103,10 @@ public class Conductor : MonoBehaviour
 
         //determine how many seconds since the song started
         songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
+
         //calculate the loop position
         if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
         {
@@ -118,8 +114,11 @@ public class Conductor : MonoBehaviour
             p1.onFinishLoop();
             wordManager.addWord();
         }
+
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
+
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
+
         checkEvents();
     }
 
@@ -188,17 +187,6 @@ public class Conductor : MonoBehaviour
             p1.goToMenu();
             Resources.UnloadAsset(Conductor.songClip);
             WordGenerator.wordDifficulty = 1;
-        }
-    }
-
-    public IEnumerator waitAndPlay()
-    {
-        // Wait a frame so every Awake and Start method is called
-        //yield return new WaitForEndOfFrame();
-
-        while (SceneManager.GetActiveScene().name == "Song Gameplay")
-        {
-          yield return new WaitForSeconds(5);
         }
     }
 }

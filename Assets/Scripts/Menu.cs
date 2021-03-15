@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
     public GameObject MenuPanel;
     public GameObject SongSelectPanel;
     public GameObject HowToPlayPanel;
+    public GameObject SettingsPanel;
 
     public Conductor conductor;
 
@@ -30,6 +31,7 @@ public class Menu : MonoBehaviour
         MenuPanel.SetActive(true);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class Menu : MonoBehaviour
         MenuPanel.SetActive(true);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
         Debug.Log("Menu Panel shown");
     }
 
@@ -51,14 +54,25 @@ public class Menu : MonoBehaviour
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(true);
         HowToPlayPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
         Debug.Log("Song Select Panel shown");
     }
 
     public void ShowHowToPlayPanel()
     {
         MenuPanel.SetActive(false);
+        SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(true);
+        SettingsPanel.SetActive(false);
         Debug.Log("How to Play Panel shown");
+    }
+
+    public void ShowSettingsPanel()
+    {
+        MenuPanel.SetActive(false);
+        SongSelectPanel.SetActive(false);
+        HowToPlayPanel.SetActive(false);
+        SettingsPanel.SetActive(true);
     }
 
     public void LoadSong(string file)
@@ -66,6 +80,7 @@ public class Menu : MonoBehaviour
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
         Debug.Log("Now loading " + file);
         Conductor.setFileName(file);
         SceneManager.LoadScene("Song Gameplay", LoadSceneMode.Single);
