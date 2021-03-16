@@ -9,6 +9,9 @@ public class Settings : MonoBehaviour
     public TextMeshProUGUI gameDifficultyText;
     public static int gameDifficulty = 1;
 
+    public TextMeshProUGUI showBeatIndicatorText;
+    public static int showBeatIndicator = 2;
+
     void Start()
     {       
         loadSettings();
@@ -20,6 +23,16 @@ public class Settings : MonoBehaviour
                 break;
             case 2:
                 gameDifficultyText.text = "Hard";
+                break;
+        }
+
+        switch (showBeatIndicator)
+        {
+            case 1:
+                showBeatIndicatorText.text = "Off";
+                break;
+            case 2:
+                showBeatIndicatorText.text = "On";
                 break;
         }
     }
@@ -41,9 +54,29 @@ public class Settings : MonoBehaviour
         saveSettings();
     }
 
+    public void setBeatIndicator()
+    {
+        //int switch = 1;
+
+        switch (showBeatIndicator)
+        {
+            case 1:
+                showBeatIndicator = 2;
+                showBeatIndicatorText.text = "On";
+                break;
+            case 2:
+                showBeatIndicator = 1;
+                showBeatIndicatorText.text = "Off";
+                break;
+        }
+        Debug.Log("Beat Indicator: " + showBeatIndicator);
+        saveSettings();
+    }
+
     public void saveSettings()
     {
         PlayerPrefs.SetInt("Game Difficulty", gameDifficulty);
+        PlayerPrefs.SetInt("Show Beat Indicator", showBeatIndicator);
     }
 
     public void loadSettings()
@@ -55,6 +88,15 @@ public class Settings : MonoBehaviour
         else
         {
             gameDifficulty = 1;
+        }
+
+        if (PlayerPrefs.HasKey("Show Beat Indicator"))
+        {
+            showBeatIndicator = PlayerPrefs.GetInt("Show Beat Indicator");
+        }
+        else
+        {
+            showBeatIndicator = 1;
         }
     }
     

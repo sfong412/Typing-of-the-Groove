@@ -114,10 +114,20 @@ public class GameplayUI : MonoBehaviour
 
         changeScore(p1ScoreUI, gameplayManager, 1);
 
-        lightIndicator(beatIndicator1, conductor, 1);
-        lightIndicator(beatIndicator2, conductor, 2);
-        lightIndicator(beatIndicator3, conductor, 3);
-        lightIndicator(beatIndicator4, conductor, 4);
+        if (Settings.showBeatIndicator == 2)
+        {
+            lightBeatIndicator(beatIndicator1, conductor, 1);
+            lightBeatIndicator(beatIndicator2, conductor, 2);
+            lightBeatIndicator(beatIndicator3, conductor, 3);
+            lightBeatIndicator(beatIndicator4, conductor, 4);
+        }
+        else
+        {
+            beatIndicator1.color = new Color(1f, 0.5059f, 0.5490f, 0f);
+            beatIndicator2.color = new Color(1f, 0.5059f, 0.5490f, 0f);
+            beatIndicator3.color = new Color(1f, 0.5059f, 0.5490f, 0f);
+            beatIndicator4.color = new Color(0.9059f, 0.3216f, 0.33f, 0f);
+        }
 
         if (p1.playableState == true)
         {
@@ -271,7 +281,7 @@ public class GameplayUI : MonoBehaviour
     }
 
     //for lighting the beat indicator under the groovetron
-    public void lightIndicator(Image indicator, Conductor c, int b)
+    public void lightBeatIndicator(Image indicator, Conductor c, int b)
     {
         int beat = b - 1;
         if (p1.playableState == true)
