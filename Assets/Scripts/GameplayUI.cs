@@ -30,7 +30,8 @@ public class GameplayUI : MonoBehaviour
     public TextMeshProUGUI p1GrooveText;
     public TextMeshProUGUI p1GrooveHitText;
 
-    private float redValue;
+    private float redWordValue;
+    public float redLetterValue;
     private float grooveOpacity;
 
     private Color onBeat;
@@ -94,7 +95,8 @@ public class GameplayUI : MonoBehaviour
 
         readyText.color = new Color(1f, 1f, 1f, 0f);
 
-        redValue = 0;
+        redWordValue = 0;
+        redLetterValue = 0;
         grooveOpacity = 1;
 
         //wip - for dynamic time signature keyPress threshold thing
@@ -132,14 +134,14 @@ public class GameplayUI : MonoBehaviour
         if (p1.playableState == true)
         {
             grooveOpacity = 1;
-            p1GrooveText.color = new Color(redValue, 0f, 0f, grooveOpacity);
-            p1GrooveHitText.color = new Color(0f, 0f, 0f, grooveOpacity);
+            p1GrooveText.color = new Color(redWordValue, 0f, 0f, grooveOpacity);
+            p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, grooveOpacity);
         }
         else
         {
             grooveOpacity = 0;
-            p1GrooveText.color = new Color(redValue, 0f, 0f, grooveOpacity);
-            p1GrooveHitText.color = new Color(0f, 0f, 0f, grooveOpacity);
+            p1GrooveText.color = new Color(redWordValue, 0f, 0f, grooveOpacity);
+            p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, grooveOpacity);
         }
 
       //  Debug.Log(p1.playableState);
@@ -182,8 +184,14 @@ public class GameplayUI : MonoBehaviour
             else if (g.myHitStatus == hitStatus.hitFail || p1.failCounter == 5)
             {
                 i.color = failColor;
+                redLetterValue = 0;
             }
         }
+    }
+
+    public void changeLetterColor()
+    {
+        redLetterValue = 1;
     }
 
     //fix this mess of a code
@@ -232,7 +240,7 @@ public class GameplayUI : MonoBehaviour
     {
         WordGenerator.changeListDifficulty();
         comboText.text = "";
-        hitStatusText.text = "Level Up!";
+        hitStatusText.text = "Score Multiplier Increase!";
         sfxPlayer.Play();
     }
 
@@ -262,13 +270,13 @@ public class GameplayUI : MonoBehaviour
     public void setWord(string word)
     {
         p1GrooveText.text = word;
-        redValue = 0;
+        redWordValue = 0;
     }
 
     public void removeLetter()
     {
         p1GrooveText.text = p1GrooveText.text.Remove(0,1);
-        redValue = 1;
+        redWordValue = 1;
     }
 
     public void removeWord()

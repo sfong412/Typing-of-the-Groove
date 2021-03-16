@@ -200,7 +200,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -395,7 +395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 0137946176ebb2a49ad7cbd22760ab71, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -165
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 0137946176ebb2a49ad7cbd22760ab71, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1900,6 +1900,7 @@ GameObject:
   - component: {fileID: 1690692732}
   - component: {fileID: 1690692733}
   - component: {fileID: 1690692734}
+  - component: {fileID: 1690692735}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -1942,6 +1943,7 @@ MonoBehaviour:
   p1GrooveHitUI: {fileID: 0}
   p1GrooveText: {fileID: 0}
   p1GrooveHitText: {fileID: 0}
+  redLetterValue: 0
   hitStatusText: {fileID: 0}
   comboText: {fileID: 0}
   wordText: {fileID: 0}
@@ -2050,6 +2052,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!168 &1690692735
+AudioEchoFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690692731}
+  m_Enabled: 1
+  m_Delay: 600
+  m_DecayRatio: 0.5
+  m_WetMix: 0.5
+  m_DryMix: 1
 --- !u!1 &1866370557 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8900364932305318668, guid: 896c8148d7badf04092be620e30d7f85, type: 3}
@@ -2261,7 +2275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 189adda78991c264a9cfe9dba8f5704e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 189adda78991c264a9cfe9dba8f5704e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2297,11 +2311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 189adda78991c264a9cfe9dba8f5704e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -160
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 189adda78991c264a9cfe9dba8f5704e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 2458503268006966880, guid: 189adda78991c264a9cfe9dba8f5704e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

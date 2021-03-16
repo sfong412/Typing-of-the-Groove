@@ -129,15 +129,17 @@ public class PlayerInput : MonoBehaviour
             }
         }
         menuButton();
+        Debug.Log(gameplayManager.myHitStatus);
     }
 
     void DetectHit(char c) 
     {
         if (wordManager.words.Count == 0 && c == beatLetter && conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
         {   
-             myHitStatus = hitStatus.hitPass;
+            myHitStatus = hitStatus.hitPass;
+            ui.changeLetterColor();
         } 
-        else if (myHitStatus != hitStatus.hitPass)
+        else// if (myHitStatus != hitStatus.hitPass)
         {
             if (failCounter < 5 && wordManager.words.Count == 0)
             {
@@ -166,6 +168,7 @@ public class PlayerInput : MonoBehaviour
     public void onFinishLoop()
     {
         failCounter = 0;
+        ui.redLetterValue = 0;
 
         if (myHitStatus == hitStatus.hitPass && isLevelingUp() == false)
             {
