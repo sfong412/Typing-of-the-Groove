@@ -105,7 +105,6 @@ public class PlayerInput : MonoBehaviour
         difficultyLevel = 1;
         comboCounter = 1;
         failCounter = 0;
-        //isCombo = false;
 
         beatLetter = '\n';
 
@@ -129,7 +128,6 @@ public class PlayerInput : MonoBehaviour
             }
         }
         menuButton();
-        Debug.Log(gameplayManager.myHitStatus);
     }
 
     void DetectHit(char c) 
@@ -139,7 +137,7 @@ public class PlayerInput : MonoBehaviour
             myHitStatus = hitStatus.hitPass;
             ui.changeLetterColor();
         } 
-        else// if (myHitStatus != hitStatus.hitPass)
+        else
         {
             if (failCounter < 5 && wordManager.words.Count == 0)
             {
@@ -178,6 +176,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     unsetPlayableState();
                 }
+
             score = score + (scoreBasedOnCombo[comboCounter] * scoreMultiplier[setMultiplier(WordGenerator.wordDifficulty)]);
             } 
         else if (myHitStatus != hitStatus.hitPass && isLevelingUp() == false)
@@ -204,7 +203,6 @@ public class PlayerInput : MonoBehaviour
             myHitStatus = hitStatus.hitNotDone;
             failCounter = 0;
             comboCounter = comboCounter + 1;
-            //score = score + (scoreBasedOnCombo[comboCounter] * scoreMultiplier[setMultiplier(WordGenerator.wordDifficulty)]);    
             if (comboCounter == 10) 
             {
                 comboCounter = 1;

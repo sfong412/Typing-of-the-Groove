@@ -6,11 +6,6 @@ using TMPro;
 
 public class GameplayUI : MonoBehaviour
 {
-
-    //The current position of the song within the loop in beats.
-    //public float loopPositionInBeats;
-
-    //Conductor instance
     public static Conductor conductor;
 
     public static GameplayManager gameplayManager;
@@ -50,8 +45,10 @@ public class GameplayUI : MonoBehaviour
     public Image beatIndicator3;
     public Image beatIndicator4;
 
-    public AudioSource sfxPlayer;
-    public AudioClip comboCompleteSfx;
+    public AudioSource comboCompleteSfxSource;
+    public AudioClip comboCompleteSfxClip;
+
+    public AudioSource crowdSfxSource;
 
     public bool haveBG;
 
@@ -99,6 +96,9 @@ public class GameplayUI : MonoBehaviour
         redLetterValue = 0;
         grooveOpacity = 1;
 
+        crowdSfxSource.volume = 0;
+        crowdSfxSource.Play();
+
         //wip - for dynamic time signature keyPress threshold thing
         beats = new int[(int)conductor.beatsPerLoop];
 
@@ -143,8 +143,7 @@ public class GameplayUI : MonoBehaviour
             p1GrooveText.color = new Color(redWordValue, 0f, 0f, grooveOpacity);
             p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, grooveOpacity);
         }
-
-      //  Debug.Log(p1.playableState);
+        Debug.Log(crowdSfxSource.volume);
     }
 
     public void changeButtonColor(Image i, Conductor c, GameplayManager g, bool isOnHit) {
@@ -219,6 +218,12 @@ public class GameplayUI : MonoBehaviour
             hitStatusText.text = "Great!";
         }
 
+        if (p1.comboCounter == 5)
+        {
+            StopCoroutine(changeCrowdVolume(0.5f, crowdSfxSource, 2));
+            StartCoroutine(changeCrowdVolume(0.5f, crowdSfxSource, 1));
+        }
+
         if (p1.comboCounter == 9)
         {
             onCompleteCombo();
@@ -233,6 +238,11 @@ public class GameplayUI : MonoBehaviour
         comboText.text = "";
         hitStatusText.text = "Miss!";
         StartCoroutine(FadeTextToZeroAlpha(1f, hitStatusText));
+        if (crowdSfxSource.volume > 0)
+        {
+            StopCoroutine(changeCrowdVolume(0.5f, crowdSfxSource, 1));
+            StartCoroutine(changeCrowdVolume(0.5f, crowdSfxSource, 2));
+        }
         return;
     }
 
@@ -241,7 +251,7 @@ public class GameplayUI : MonoBehaviour
         WordGenerator.changeListDifficulty();
         comboText.text = "";
         hitStatusText.text = "Score Multiplier Increase!";
-        sfxPlayer.Play();
+        comboCompleteSfxSource.Play();
     }
 
     public IEnumerator FadeTextToZeroAlpha(float t, TextMeshProUGUI i)
@@ -255,15 +265,29 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    // ~~change ALL text to textmeshpro plz~~
-    public IEnumerator FadeTextToZeroAlphaPro(float t, TextMeshProUGUI i)
+    public IEnumerator changeCrowdVolume(float t, AudioSource a, int v)
     {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        yield return new WaitForSeconds(1);
-        while (i.color.a > 0.0f)
+        switch (v)
         {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
-            yield return null;
+            case 1:
+            {
+                a.volume = 0;
+                while (a.volume < 0.2f)
+                {
+                    a.volume = a.volume + (Time.deltaTime * t);
+                    yield return null;
+                }
+                break;
+            }
+            case 2:
+            {
+                while (a.volume > 0f)
+                {
+                    a.volume = a.volume - (Time.deltaTime * t);
+                    yield return null;
+                }
+                break;
+            }
         }
     }
 
@@ -277,10 +301,6 @@ public class GameplayUI : MonoBehaviour
     {
         p1GrooveText.text = p1GrooveText.text.Remove(0,1);
         redWordValue = 1;
-    }
-
-    public void removeWord()
-    {
     }
 
     public void setLetter(char letter)
@@ -330,10 +350,11 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    void eventText(Conductor c, PlayerInput p, TextMeshProUGUI t) {
+    void eventText(Conductor c, PlayerInput p, TextMeshProUGUI t)
+    {
         if (p.playableState == true)
         {
-            StartCoroutine(FadeTextToZeroAlphaPro(1f, t));
+            StartCoroutine(FadeTextToZeroAlpha(1f, t));
         }
         return;
     }
