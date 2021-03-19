@@ -143,7 +143,7 @@ public class GameplayUI : MonoBehaviour
             p1GrooveText.color = new Color(redWordValue, 0f, 0f, grooveOpacity);
             p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, grooveOpacity);
         }
-        Debug.Log(crowdSfxSource.volume);
+       // Debug.Log(crowdSfxSource.volume);
     }
 
     public void changeButtonColor(Image i, Conductor c, GameplayManager g, bool isOnHit) {
@@ -202,6 +202,17 @@ public class GameplayUI : MonoBehaviour
          if (i == 2)
         {
             t.text = p2.score.ToString();
+        }
+    }
+
+    public void recordScore(string songName)
+    {
+        string key = "score_" + songName;
+        int currentScore = PlayerPrefs.GetInt(key);
+
+        if (p1.score > currentScore)
+        {
+            PlayerPrefs.SetInt(key, p1.score);
         }
     }
 

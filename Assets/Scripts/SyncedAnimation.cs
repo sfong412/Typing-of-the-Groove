@@ -30,7 +30,7 @@ public class SyncedAnimation : MonoBehaviour
         Animator.StringToHash("Dance03"),
         Animator.StringToHash("Dance04"),
         Animator.StringToHash("Dance05"),
-        Animator.StringToHash("Dance06")
+        Animator.StringToHash("Dance06"),
     };
 
     // Start is called before the first frame update

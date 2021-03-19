@@ -13,7 +13,7 @@ public class PlayerInput : MonoBehaviour
     private bool hitSuccess;
 
     //Keep track of scores for P1 and P2
-    public float score;
+    public int score;
     //public float P2Score;
 
     //Power-ups counter for P1 and P2
@@ -49,20 +49,20 @@ public class PlayerInput : MonoBehaviour
 
     //Score multiplier based on word generator difficulty
     // TO-DO -- ADD FUNCTION IF WORD DIFFICULTY MAXES OUT TO END OF ARRAY
-    private float[] scoreMultiplier =
+    private int[] scoreMultiplier =
     {
-        (float)0,
-        (float)1,
-        (float)2,
-        (float)3,
-        (float)4,
-        (float)5,
-        (float)6,
-        (float)7,
-        (float)8,
-        (float)9,
-        (float)10,
-        (float)11
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
     };
 
     //Keeps track of failed button inputs in a beat

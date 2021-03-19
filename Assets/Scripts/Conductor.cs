@@ -96,7 +96,7 @@ public class Conductor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        if (musicSource.isPlaying == false)
+        if (musicStarted == false)
         {
             return;
         }
@@ -179,6 +179,7 @@ public class Conductor : MonoBehaviour
         if (completedLoops == playEndEvent)
         {
             p1.playableState = false;
+            ui.recordScore(SongMetadata.fileName);
         }
 
         if (completedLoops == songEndEvent)

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class Menu : MonoBehaviour
     public GameObject SettingsPanel;
 
     public Conductor conductor;
+
+    public TextMeshProUGUI highScoreDisplay;
 
     //location of song's jsonFile metadata
     public string jsonFile;
@@ -38,6 +42,12 @@ public class Menu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void MouseEnterEvent()
+    {
+        //If your mouse hovers over the GameObject with the script attached, output this message
+        Debug.Log("Mouse is over GameObject.");
     }
 
     public void ShowMenuPanel()
@@ -84,6 +94,20 @@ public class Menu : MonoBehaviour
         Debug.Log("Now loading " + file);
         Conductor.setFileName(file);
         SceneManager.LoadScene("Song Gameplay", LoadSceneMode.Single);
+    }
+
+    public float showHighScore(string songName)
+    {
+        string key = "score_" + songName;
+
+        if (PlayerPrefs.HasKey(key))
+        {
+            return PlayerPrefs.GetInt(key);
+        }
+        else
+        {
+            return 0f;
+        }
     }
 
     string songFile(string songName)
