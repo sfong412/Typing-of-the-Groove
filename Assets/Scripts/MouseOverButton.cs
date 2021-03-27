@@ -33,7 +33,7 @@ public class MouseOverButton : MonoBehaviour, IPointerEnterHandler
         }
         else
         {
-            return 420;
+            return 0;
         }
     }
 }

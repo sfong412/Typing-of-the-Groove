@@ -84,17 +84,18 @@ public class GameplayUI : MonoBehaviour
 
         readyText = GameObject.Find("Ready Text").GetComponent<TextMeshProUGUI>();
 
-        onBeat = new Color(0.9f, 0.9f, 0.9f, 1f);
+        grooveOpacity = 0.6f;
 
-        offBeat = new Color(0.7f, 0.7f, 0.7f, 1f);
+        onBeat = new Color(0.9f, 0.9f, 0.9f, grooveOpacity);
 
-        failColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+        offBeat = new Color(0.7f, 0.7f, 0.7f, grooveOpacity);
+
+        failColor = new Color(0.5f, 0.5f, 0.5f, grooveOpacity);
 
         readyText.color = new Color(1f, 1f, 1f, 0f);
 
         redWordValue = 0;
         redLetterValue = 0;
-        grooveOpacity = 1;
 
         crowdSfxSource.volume = 0;
         crowdSfxSource.Play();
@@ -133,15 +134,15 @@ public class GameplayUI : MonoBehaviour
 
         if (p1.playableState == true)
         {
-            grooveOpacity = 1;
-            p1GrooveText.color = new Color(redWordValue, 0f, 0f, grooveOpacity);
-            p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, grooveOpacity);
+            grooveOpacity = 0.6f;
+            p1GrooveText.color = new Color(redWordValue, 0f, 0f, 1f);
+            p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, 1f);
         }
         else
         {
             grooveOpacity = 0;
-            p1GrooveText.color = new Color(redWordValue, 0f, 0f, grooveOpacity);
-            p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, grooveOpacity);
+            p1GrooveText.color = new Color(redWordValue, 0f, 0f, 0f);
+            p1GrooveHitText.color = new Color(redLetterValue, 0f, 0f, 0f);
         }
        // Debug.Log(crowdSfxSource.volume);
     }
@@ -329,22 +330,22 @@ public class GameplayUI : MonoBehaviour
             {
                 if (b < 4)
                 {
-                    indicator.color = new Color(1f, 0.5059f, 0.5490f, 1f);
+                    indicator.color = new Color(1f, 0.5059f, 0.5490f, grooveOpacity);
                 }
                 else
                 {
-                    indicator.color = new Color(0.3725f, 1f, 0.4157f, 1f);
+                    indicator.color = new Color(0.3725f, 1f, 0.4157f, grooveOpacity);
                 }
             }
             else
             {
                 if (b < 4)
                 {
-                    indicator.color = new Color(0.9059f, 0.3216f, 0.33f, 1f);
+                    indicator.color = new Color(0.9059f, 0.3216f, 0.33f, grooveOpacity);
                 }
                 else
                 {
-                    indicator.color = new Color(0f, 0.851f, 0.1569f, 1f);
+                    indicator.color = new Color(0f, 0.851f, 0.1569f, grooveOpacity);
                 }  
             }
         }
@@ -352,11 +353,11 @@ public class GameplayUI : MonoBehaviour
         {
             if (b < 4)
             {
-                indicator.color = new Color(0.9059f, 0.3216f, 0.33f, 1f);
+                indicator.color = new Color(0.9059f, 0.3216f, 0.33f, grooveOpacity);
             }
             else
             {
-                indicator.color = new Color(0f, 0.851f, 0.1569f, 1f);
+                indicator.color = new Color(0f, 0.851f, 0.1569f, grooveOpacity);
             }  
         }
     }
