@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnvironmentController : MonoBehaviour
 {
-    public Material floorMaterial;
-    public Material skyboxMaterial;
+    public Conductor conductor;
 
-    //public float amplitude;
-    //public float period;
-   // public float phase;
+    public GameObject sphere;
+    public Material sphereMaterial;
+
+    public float amplitude;
+    public float period;
+    public float phase;
+    
     private float frequency;
     private float angularFrequency;
     private float elapsedTime;
@@ -17,21 +20,58 @@ public class EnvironmentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        sphereMaterial.shader = Shader.Find("Shader Graphs/Waves");
+        sphereMaterial.SetFloat("Cell_Density", 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // _EmissionColor.gameObject.GetComponent).material.EnableKeyword("_EMISSION");
+        SmoothSineWave(amplitude, period, phase);
+        //warpDensity();
+    }
 
-        //floorMaterial.SetColor("_EmissionColor", new Color(0.22f, 0.1f, 0.2f, 0f));
+    void activateSphereWaves()
+    {
 
-        //rgb(56,25,50)
-        //rgb(0.22f, 0.1f, 0.2f, 0f)
+        //float density = 12f;
 
-        //SmoothSineWave(1, 5, 1);
-        //rotateSkybox();
+        //sphereMaterial.SetFloat("Cell_Density", warpDensity());
+
+        //Debug.Log(sphereMaterial.GetFloat("Cell_Density"));
+    }
+
+    float warpDensity()
+    {
+        float min = 0f;
+        float max = 10f;
+        float t = 1;
+
+        float warp = Mathf.Lerp(min, max, conductor.loopPositionInAnalog);
+
+      //  Debug.Log(warp);
+        return warp;
+    }
+
+    public void onFinishLoop()
+    {
+        warpSphere();
+    }
+
+    IEnumerator warpSphere()
+    {
+        sphereMaterial.SetFloat("Cell_Density", 12f);
+
+        yield return new WaitForSeconds(1);
+
+        float density = sphereMaterial.GetFloat("Cell_Density");
+
+        while (density > 0f)
+        {
+            sphereMaterial.SetFloat("Cell_Density", density - 0.5f);
+            yield return null;
+        }
+        //break;
     }
 
     void SmoothSineWave(float amplitude, float period, float phase)
@@ -58,7 +98,7 @@ public class EnvironmentController : MonoBehaviour
         // 
         //transform.localPosition = new Vector3(0, y, 0);
 
-        floorMaterial.SetColor("_EmissionColor", new Color(setRange(0, 0.27f, y), setRange(0, 0.17f, y), setRange(0, 0.27f, y), 0f));
+        sphereMaterial.SetFloat("Cell_Density", y);
        // Debug.Log(setRange(0, 0.32f, y));
     }
 
@@ -66,7 +106,7 @@ public class EnvironmentController : MonoBehaviour
     {
         return Mathf.Lerp(min, max, Mathf.InverseLerp (-1, 1, f));
     }
-
+/*
     void rotateSkybox()
     {
         if (skyboxMaterial.HasProperty("_Rotation") == true)
@@ -102,4 +142,5 @@ public class EnvironmentController : MonoBehaviour
             yield return null;
         }
     }
+    */
 }

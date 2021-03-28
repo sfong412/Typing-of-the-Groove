@@ -37,6 +37,8 @@ public class Conductor : MonoBehaviour
     //the number of beats in each loop
     public float beatsPerLoop;
 
+    public int completedBeats;
+
     //the total number of loops completed since the looping clip first started
     public int completedLoops = 0;
 
@@ -47,6 +49,8 @@ public class Conductor : MonoBehaviour
 
     //The current relative position of the song within the loop measured between 0 and 1.
     public float loopPositionInAnalog;
+
+    public float beatPosition;
 
     //Conductor instance
     //public static Conductor conductor;
@@ -63,6 +67,8 @@ public class Conductor : MonoBehaviour
     public WordManager wordManager;
 
     public GameplayUI ui;
+
+    public EnvironmentController environment;
 
     Scene scene;
 
@@ -112,9 +118,9 @@ public class Conductor : MonoBehaviour
         {
             completedLoops++;
             p1.onFinishLoop();
+            environment.onFinishLoop();
             wordManager.addWord();
         }
-
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
