@@ -61,6 +61,7 @@ public class Menu : MonoBehaviour
 
     public void ShowSongSelectPanel()
     {
+        //Settings.displayGameDifficulty();
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(true);
         HowToPlayPanel.SetActive(false);
@@ -79,6 +80,7 @@ public class Menu : MonoBehaviour
 
     public void ShowSettingsPanel()
     {
+      //  Settings.displayGameDifficulty();
         MenuPanel.SetActive(false);
         SongSelectPanel.SetActive(false);
         HowToPlayPanel.SetActive(false);
@@ -96,9 +98,24 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Song Gameplay", LoadSceneMode.Single);
     }
 
-    public float showHighScore(string songName)
+    public float showHighScore(string songName, int currentDifficulty)
     {
-        string key = "score_" + songName;
+        string difficulty = "";
+
+        if (currentDifficulty == 1)
+        {
+            difficulty = "easy_";
+        }
+        else if (currentDifficulty == 2)
+        {
+            difficulty = "normal_";
+        }
+        else if (currentDifficulty == 3)
+        {
+            difficulty = "hard_";
+        }
+
+        string key = "score_" + difficulty + songName;
 
         if (PlayerPrefs.HasKey(key))
         {

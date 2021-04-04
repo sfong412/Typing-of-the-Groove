@@ -14,14 +14,27 @@ public class Settings : MonoBehaviour
 
     void Start()
     {       
+        initializeSettings();
+    }
+
+    void OnEnable()
+    {
+        initializeSettings();
+    }
+
+    public void initializeSettings()
+    {
         loadSettings();
 
         switch (gameDifficulty)
         {
             case 1:
-                gameDifficultyText.text = "Normal";
+                gameDifficultyText.text = "Easy";
                 break;
             case 2:
+                gameDifficultyText.text = "Normal";
+                break;
+            case 3:
                 gameDifficultyText.text = "Hard";
                 break;
         }
@@ -43,11 +56,15 @@ public class Settings : MonoBehaviour
         {
             case 1:
                 gameDifficulty = 2;
-                gameDifficultyText.text = "Hard";
+                gameDifficultyText.text = "Normal";
                 break;
             case 2:
+                gameDifficulty = 3;
+                gameDifficultyText.text = "Hard";
+                break;
+            case 3:
                 gameDifficulty = 1;
-                gameDifficultyText.text = "Normal";
+                gameDifficultyText.text = "Easy";
                 break;
         }
         Debug.Log(gameDifficulty);
@@ -87,7 +104,7 @@ public class Settings : MonoBehaviour
         }
         else
         {
-            gameDifficulty = 1;
+            gameDifficulty = 2;
         }
 
         if (PlayerPrefs.HasKey("Show Beat Indicator"))

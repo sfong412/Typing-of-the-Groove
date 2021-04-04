@@ -18,14 +18,28 @@ public class MouseOverButton : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        menu.highScoreDisplay.text = songTitle.text + "\n High score: " + showHighScore(songTitle.text).ToString();
-        Debug.Log("score_" + songTitle.text + ".");
-        Debug.Log("score_Bust a Groove OST - Kitty N");
+        menu.highScoreDisplay.text = songTitle.text + "\n High score: " + showHighScore(songTitle.text, Settings.gameDifficulty).ToString();
+        Debug.Log(menu.highScoreDisplay.text);
     }
 
-    public int showHighScore(string songName)
+    public int showHighScore(string songName, int currentDifficulty)
     {
-        string key = "score_" + songName;
+        string difficulty = "";
+
+        if (currentDifficulty == 1)
+        {
+            difficulty = "easy_";
+        }
+        else if (currentDifficulty == 2)
+        {
+            difficulty = "normal_";
+        }
+        else if (currentDifficulty == 3)
+        {
+            difficulty = "hard_";
+        }
+
+        string key = "score_" + difficulty + songName;
 
         if (PlayerPrefs.HasKey(key))
         {

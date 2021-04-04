@@ -260,6 +260,7 @@ public class PlayerInput : MonoBehaviour
     {
         SceneManager.LoadScene("Song Menu");
         Resources.UnloadAsset(Conductor.songClip);
+        WordGenerator.wordDifficulty = 1;
     }
 
     public void setPlayableState()

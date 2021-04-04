@@ -6,6 +6,8 @@ public class EnvironmentController : MonoBehaviour
 {
     public Conductor conductor;
 
+    public GameObject orbit;
+
     public GameObject sphere;
     public Material sphereMaterial;
 
@@ -22,23 +24,14 @@ public class EnvironmentController : MonoBehaviour
     {
         sphereMaterial.shader = Shader.Find("Shader Graphs/Waves");
         sphereMaterial.SetFloat("Cell_Density", 0f);
+        orbit.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         SmoothSineWave(amplitude, period, phase);
-        //warpDensity();
-    }
-
-    void activateSphereWaves()
-    {
-
-        //float density = 12f;
-
-        //sphereMaterial.SetFloat("Cell_Density", warpDensity());
-
-        //Debug.Log(sphereMaterial.GetFloat("Cell_Density"));
+        rotateOrbit();
     }
 
     float warpDensity()
@@ -95,52 +88,16 @@ public class EnvironmentController : MonoBehaviour
         float omegaProduct = (angularFrequency * elapsedTime);
         // Plug in all calculated variables into the complete Sine wave equation.
         float y = (amplitude * Mathf.Sin(omegaProduct + phase));
-        // 
-        //transform.localPosition = new Vector3(0, y, 0);
 
         sphereMaterial.SetFloat("Cell_Density", y);
-       // Debug.Log(setRange(0, 0.32f, y));
     }
 
-    float setRange(float min, float max, float f)
+    void rotateOrbit()
     {
-        return Mathf.Lerp(min, max, Mathf.InverseLerp (-1, 1, f));
+        //Quaternion target = Quaternion.Euler(0f, 60f, 0f);
+
+       // orbit.transform.rotation = Quaternion.Slerp(orbit.transform.rotation, target, Time.deltaTime * 0.05f);
+
+       orbit.transform.RotateAround(orbit.transform.position, new Vector3(0.2f, 1, 0), 5 * Time.deltaTime);
     }
-/*
-    void rotateSkybox()
-    {
-        if (skyboxMaterial.HasProperty("_Rotation") == true)
-        {
-            int rotate = skyboxMaterial.GetInt("_Rotation");
-
-            if (rotate < 360)
-            {
-                //skyboxMaterial.SetInt("_Rotation", (rotate + 1));
-              //  StartCoroutine(waitForSeconds());
-              //rotateSkyboxCoroutine(rotate);
-            }
-
-            if (rotate == 360)
-            {
-               // skyboxMaterial.SetInt("_Rotation", 0);
-            }
-           // Debug.Log(rotate);
-        }
-        else
-        {
-         //   Debug.Log("Nope");
-        }
-    }
-
-    IEnumerator rotateSkyboxCoroutine(int rotate)
-    {
-        //yield return new WaitForSeconds(1f);
-
-        while (rotate < 360)
-        {
-            skyboxMaterial.SetInt("_Rotation", (rotate + 1));
-            yield return null;
-        }
-    }
-    */
 }

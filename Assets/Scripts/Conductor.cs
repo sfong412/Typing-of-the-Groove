@@ -88,6 +88,8 @@ public class Conductor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        WordGenerator.wordDifficulty = 1;
+
         //Get player inputs
         p1 = GameObject.Find("Player 1").GetComponent<PlayerInput>();
 
@@ -185,12 +187,11 @@ public class Conductor : MonoBehaviour
         if (completedLoops == playEndEvent)
         {
             p1.playableState = false;
-            ui.recordScore(SongMetadata.fileName);
+            ui.recordScore(SongMetadata.fileName, Settings.gameDifficulty);
         }
 
         if (completedLoops == songEndEvent)
         {
-            // -- TO ADD: record score function --
             p1.goToMenu();
             Resources.UnloadAsset(Conductor.songClip);
             WordGenerator.wordDifficulty = 1;

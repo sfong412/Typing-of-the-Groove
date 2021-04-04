@@ -206,9 +206,24 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    public void recordScore(string songName)
+    public void recordScore(string songName, int currentDifficulty)
     {
-        string key = "score_" + songName;
+        string difficulty = "";
+
+        if (currentDifficulty == 1)
+        {
+            difficulty = "easy_";
+        }
+        else if (currentDifficulty == 2)
+        {
+            difficulty = "normal_";
+        }
+        else if (currentDifficulty == 3)
+        {
+            difficulty = "hard_";
+        }
+
+        string key = "score_" + difficulty + songName;
         int currentScore = PlayerPrefs.GetInt(key);
 
         if (p1.score > currentScore)
