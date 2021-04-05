@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5d6d43d1ff2e29e42923654de42ad47a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -133,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 8778385549784012145, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_Text
       value: Exit Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -293,15 +297,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -387,8 +391,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2 Mello - Reach Out
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -481,8 +485,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Kitty - Asari Love Song
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -702,8 +706,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go Back to Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -787,7 +791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &208051944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -874,6 +878,10 @@ PrefabInstance:
     - target: {fileID: 8778385549784012145, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_Text
       value: Exit Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1034,15 +1042,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Settings
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1332,8 +1340,8 @@ MonoBehaviour:
     beat, you must type the required word before hitting the letter. The word before
     the 4th beat does not have to be on rhythm but the letter on the 4th beat does."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1561,8 +1569,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go Back to Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1790,8 +1798,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2224,8 +2232,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go Back to Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2689,8 +2697,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2782,7 +2790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1160892828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2879,6 +2887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 884864337}
+  settings: {fileID: 0}
   songTitle: {fileID: 0}
 --- !u!1001 &1198773459
 PrefabInstance:
@@ -3066,8 +3075,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Beat Indicator
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3319,8 +3328,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Change Game Difficulty
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3501,7 +3510,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 160}
-  m_SizeDelta: {x: 800, y: 100}
+  m_SizeDelta: {x: 1200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221607805
 MonoBehaviour:
@@ -3523,10 +3532,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Typing of the Groove - Prototype
+  m_text: Typing of the Groove (Prototype)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4283dbb9e9a76224c8483bda9f9c31d4, type: 2}
-  m_sharedMaterial: {fileID: 6281910572314209361, guid: 4283dbb9e9a76224c8483bda9f9c31d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3550,8 +3559,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3659,8 +3668,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3752,6 +3761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 884864337}
+  settings: {fileID: 0}
   songTitle: {fileID: 0}
 --- !u!1001 &1499902906
 PrefabInstance:
@@ -3763,6 +3773,10 @@ PrefabInstance:
     - target: {fileID: 8778385549784012145, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_Text
       value: How to Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3923,15 +3937,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: How to Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4556,8 +4570,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'High Score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4817,8 +4831,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Change Game Difficulty
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4960,6 +4974,18 @@ PrefabInstance:
     - target: {fileID: 8778385549784012145, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5111,15 +5137,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Open Song Select Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
+  m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

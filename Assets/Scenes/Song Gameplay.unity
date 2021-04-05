@@ -1920,6 +1920,8 @@ MonoBehaviour:
   orbit: {fileID: 1600854354}
   sphere: {fileID: 1598966248}
   sphereMaterial: {fileID: 2100000, guid: a78ee349e77427d418bf1a1c1f8bb36b, type: 2}
+  floor: {fileID: 609709630}
+  floorMaterial: {fileID: 2100000, guid: f49fdd94afbf94348b461d4d5bbceee2, type: 2}
   amplitude: 1.5
   period: 5
   phase: 90
@@ -2516,8 +2518,10 @@ MonoBehaviour:
   songData: {fileID: 0}
   songBpm: 0
   secPerBeat: 0
+  secPerMeasure: 0
   songPosition: 0
   songPositionInBeats: 0
+  songPositionInMeasures: 0
   dspSongTime: 0
   firstBeatOffset: 0
   beatsPerLoop: 0

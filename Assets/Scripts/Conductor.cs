@@ -17,11 +17,15 @@ public class Conductor : MonoBehaviour
     //The number of seconds for each song beat
     public float secPerBeat;
 
+    public float secPerMeasure;
+
     //Current song position, in seconds
     public float songPosition;
 
     //Current song position, in beats
     public float songPositionInBeats;
+
+    public float songPositionInMeasures;
 
     //How many seconds have passed since the song started
     public float dspSongTime;
@@ -37,7 +41,7 @@ public class Conductor : MonoBehaviour
     //the number of beats in each loop
     public float beatsPerLoop;
 
-    public int completedBeats;
+    public int completedBeats = 0;
 
     //the total number of loops completed since the looping clip first started
     public int completedLoops = 0;
@@ -96,7 +100,10 @@ public class Conductor : MonoBehaviour
         wordManager = GameObject.Find("Word Manager").GetComponent<WordManager>();
 
         //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
+        secPerBeat = beatsPerLoop * (60f / songBpm);
+
+        //Calculate the number of seconds in each measure
+        secPerMeasure = secPerBeat / beatsPerLoop;
 
         StartCoroutine(countDown());
     }
@@ -113,16 +120,27 @@ public class Conductor : MonoBehaviour
         songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
         //determine how many beats since the song started
-        songPositionInBeats = songPosition / secPerBeat;
+        songPositionInBeats = songPosition / secPerMeasure;
+
+        //determine how many measures since the song started
+        songPositionInMeasures = songPosition / secPerBeat;
+
+        //calculate the beat position
+        if (songPositionInBeats >= (completedBeats + 1))
+        {
+            completedBeats++;
+            environment.onFinishLoop();
+            Debug.Log("beat");
+        }
 
         //calculate the loop position
         if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
         {
             completedLoops++;
             p1.onFinishLoop();
-            environment.onFinishLoop();
             wordManager.addWord();
         }
+
         loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;

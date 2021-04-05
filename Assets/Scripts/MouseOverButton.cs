@@ -7,18 +7,23 @@ using TMPro;
 public class MouseOverButton : MonoBehaviour, IPointerEnterHandler
 {
     public Menu menu;
-
+    public Settings settings;
     public TextMeshProUGUI songTitle;
 
+    GameObject songSelectScreen;
 
     void Start()
     {
+        songSelectScreen = GameObject.Find("SongSelectPanel");
+
+        settings = songSelectScreen.GetComponent<Settings>();
+
         songTitle = gameObject.GetComponentInChildren(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        menu.highScoreDisplay.text = songTitle.text + "\n High score: " + showHighScore(songTitle.text, Settings.gameDifficulty).ToString();
+        menu.highScoreDisplay.text = songTitle.text  + "\n Difficulty: " + settings.gameDifficultyText.text + "\n High score: " + showHighScore(songTitle.text, Settings.gameDifficulty).ToString();
         Debug.Log(menu.highScoreDisplay.text);
     }
 

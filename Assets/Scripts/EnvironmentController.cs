@@ -11,6 +11,9 @@ public class EnvironmentController : MonoBehaviour
     public GameObject sphere;
     public Material sphereMaterial;
 
+    public GameObject floor;
+    public Material floorMaterial;
+
     public float amplitude;
     public float period;
     public float phase;
@@ -22,9 +25,15 @@ public class EnvironmentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        floorMaterial.shader = Shader.Find("Shader Graphs/Floor Glass");
+
         sphereMaterial.shader = Shader.Find("Shader Graphs/Waves");
         sphereMaterial.SetFloat("Cell_Density", 0f);
         orbit.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+        amplitude = 1.5f;
+        period = 5f;
+        phase = 90f;
     }
 
     // Update is called once per frame
@@ -48,23 +57,7 @@ public class EnvironmentController : MonoBehaviour
 
     public void onFinishLoop()
     {
-        warpSphere();
-    }
 
-    IEnumerator warpSphere()
-    {
-        sphereMaterial.SetFloat("Cell_Density", 12f);
-
-        yield return new WaitForSeconds(1);
-
-        float density = sphereMaterial.GetFloat("Cell_Density");
-
-        while (density > 0f)
-        {
-            sphereMaterial.SetFloat("Cell_Density", density - 0.5f);
-            yield return null;
-        }
-        //break;
     }
 
     void SmoothSineWave(float amplitude, float period, float phase)
