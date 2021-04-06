@@ -8,6 +8,8 @@ public class EnvironmentController : MonoBehaviour
 
     public GameObject orbit;
 
+    public GameObject crystal;
+
     public GameObject sphere;
     public Material sphereMaterial;
 
@@ -22,6 +24,9 @@ public class EnvironmentController : MonoBehaviour
     private float angularFrequency;
     private float elapsedTime;
 
+    private float y;
+    private float rotationSpeed = -30f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +39,8 @@ public class EnvironmentController : MonoBehaviour
         amplitude = 1.5f;
         period = 5f;
         phase = 90f;
+
+        Debug.Log(crystal.transform.childCount + " children");
     }
 
     // Update is called once per frame
@@ -41,6 +48,17 @@ public class EnvironmentController : MonoBehaviour
     {
         SmoothSineWave(amplitude, period, phase);
         rotateOrbit();
+        rotateCrystal();
+    }
+
+    void FixedUpdate()
+    {
+        y += Time.deltaTime * rotationSpeed;
+
+        if (y > 360.0f)
+        {
+            y = 0.0f;
+        }
     }
 
     float warpDensity()
@@ -92,5 +110,13 @@ public class EnvironmentController : MonoBehaviour
        // orbit.transform.rotation = Quaternion.Slerp(orbit.transform.rotation, target, Time.deltaTime * 0.05f);
 
        orbit.transform.RotateAround(orbit.transform.position, new Vector3(0.2f, 1, 0), 5 * Time.deltaTime);
+    }
+
+    void rotateCrystal()
+    {
+        foreach (Transform child in crystal.transform)
+        {
+            child.transform.localRotation = Quaternion.Euler(-90f, y, 0f);
+        }
     }
 }
