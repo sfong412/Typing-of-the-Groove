@@ -12,10 +12,21 @@ public class CameraController : MonoBehaviour
 
     Vector3 defaultCameraPosition;
 
+    Vector3 targetCameraPosition;
+    Quaternion targetCameraRotation;
+
     // Start is called before the first frame update
     void Start()
     {
-        defaultCameraPosition = mainCamera.transform.position;
+        defaultCameraPosition = mainCamera.transform.localPosition;
+
+        targetCameraPosition = defaultCameraPosition;
+        targetCameraRotation = Quaternion.Euler(0, 0, 0);
+
+        Debug.Log(defaultCameraPosition.x);
+        Debug.Log(defaultCameraPosition.y);
+        Debug.Log(defaultCameraPosition.z);
+
     }
 
     // Update is called once per frame
@@ -23,88 +34,78 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.L))
         {
-            snapToDefaultCameraPosition();
+            snapToCameraPosition("center_near");
         }
 
-        if(Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.K))
         {
-            spinCamera(0.2f, 1f, 8f);
+            spinCamera(0.2f, 1f, 14f);
         }
 
-        if(Input.GetKey(KeyCode.J))
+        if (Input.GetKey(KeyCode.J))
         {
-            moveToDefaultCameraPosition(4f);
+            moveCameraPosition(4f, "low_right_near");
+        }
+
+        if (Input.GetKey(KeyCode.H))
+        {
+            moveCameraPosition(4f, "low_left_near");
+        }
+
+        if (Input.GetKey(KeyCode.P))
+        {
+            moveCameraPosition(4f, "center_far");
         }
     }
 
-    void snapToDefaultCameraPosition()
+    void moveCameraPosition(float speed, string position)
     {
-        mainCamera.transform.position = defaultCameraPosition;
-        mainCamera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        setCameraTargetPosition(position);
+
+        mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, targetCameraPosition, Time.deltaTime * speed);
+
+        mainCamera.transform.localRotation = Quaternion.Lerp(mainCamera.transform.localRotation, targetCameraRotation, Time.deltaTime * speed);
     }
 
-
-    //clean up camera movement
-    void moveToDefaultCameraPosition(float speed)
+    void snapToCameraPosition(string position)
     {
-        float x = 1f;
-        float y = 1f;
-        float z = 1f;
+        setCameraTargetPosition(position);
 
-        float rotateX = 1f;
-        float rotateY = 1f;
-        float rotateZ = 1f;
-
-        if (mainCamera.transform.position.x > defaultCameraPosition.x)
-        {
-            x = -x;
-        }
-
-        if (mainCamera.transform.position.y > defaultCameraPosition.y)
-        {
-            y = -y;
-        }
-
-        if (mainCamera.transform.position.z > defaultCameraPosition.z)
-        {
-            z = -z;
-        }
-
-        if (mainCamera.transform.rotation.x > 0f)
-        {
-            rotateX = -rotateX;
-        }
-
-        if (mainCamera.transform.position.y > 0f)
-        {
-            rotateY = -rotateY;
-        }
-
-        if (mainCamera.transform.position.z > 0f)
-        {
-            rotateZ = -rotateZ;
-        }
-
-        Quaternion target = Quaternion.Euler(rotateX, rotateY, rotateZ);
-        Quaternion defaultRotation = Quaternion.Euler(0, 0, 0);
-
-        while (mainCamera.transform.position != defaultCameraPosition)
-        {
-            mainCamera.transform.position = mainCamera.transform.position + new Vector3(x * Time.deltaTime * speed, y * Time.deltaTime * speed, z * Time.deltaTime * speed);
-            break;
-        }
-
-        while (mainCamera.transform.rotation != defaultRotation)
-        {
-            mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, target, Time.deltaTime * speed);
-            break;
-        }
+        mainCamera.transform.localPosition = targetCameraPosition;
+        mainCamera.transform.localRotation = targetCameraRotation;
     }
 
     void spinCamera(float x, float y, float speed)
     {
         Vector3 axis = new Vector3(x, y, 0f);
 
-        mainCamera.transform.RotateAround(avatar.transform.position, axis, speed * Time.deltaTime);
+        mainCamera.transform.RotateAround(avatar.transform.localPosition, axis, speed * Time.deltaTime);
+    }
+
+    void setCameraTargetPosition(string position)
+    {
+        if (position == "center_near")
+        {
+            targetCameraPosition.Set(-1.5f, -5.99f, -10.9f);
+            targetCameraRotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if (position == "center_far")
+        {
+            targetCameraPosition.Set(-1.5f, -5.99f, -12.5f);
+            targetCameraRotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if (position == "low_left_near")
+        {
+            targetCameraPosition.Set(-1.9f, -6.66f, -10.1f);
+            targetCameraRotation = Quaternion.Euler(-14f, 15, 0);
+        }
+
+        if (position == "low_right_near")
+        {
+            targetCameraPosition.Set(1.9f, -6.66f, -10.1f);
+            targetCameraRotation = Quaternion.Euler(-14f, -15, 0);
+        }
     }
 }
