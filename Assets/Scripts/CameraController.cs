@@ -15,6 +15,10 @@ public class CameraController : MonoBehaviour
     Vector3 targetCameraPosition;
     Quaternion targetCameraRotation;
 
+    string setPosition;
+
+    public bool cameraIsMoving;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,7 @@ public class CameraController : MonoBehaviour
         Debug.Log(defaultCameraPosition.y);
         Debug.Log(defaultCameraPosition.z);
 
+        cameraIsMoving = false;
     }
 
     // Update is called once per frame
@@ -34,7 +39,7 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.L))
         {
-            snapToCameraPosition("center_near");
+            setPosition = "center_near";
         }
 
         if (Input.GetKey(KeyCode.K))
@@ -44,18 +49,20 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.J))
         {
-            moveCameraPosition(4f, "low_right_near");
+            setPosition = "low_right_near";
         }
 
         if (Input.GetKey(KeyCode.H))
         {
-            moveCameraPosition(4f, "low_left_near");
+            setPosition = "low_left_near";
         }
 
         if (Input.GetKey(KeyCode.P))
         {
-            moveCameraPosition(4f, "center_far");
+            setPosition = "center_far";
         }
+
+        moveCameraPosition(4f, setPosition);
     }
 
     void moveCameraPosition(float speed, string position)

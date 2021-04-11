@@ -196,19 +196,19 @@ public class Conductor : MonoBehaviour
     void checkEvents()
     {
         //song starts
-        if (completedLoops == playStartEvent)
+        if (completedBeats == playStartEvent)
         {
             p1.setPlayableState();
         }
 
         //song ends
-        if (completedLoops == playEndEvent)
+        if (completedBeats == playEndEvent)
         {
             p1.playableState = false;
             ui.recordScore(SongMetadata.fileName, Settings.gameDifficulty);
         }
 
-        if (completedLoops == songEndEvent)
+        if (completedBeats == songEndEvent)
         {
             p1.goToMenu();
             Resources.UnloadAsset(Conductor.songClip);
