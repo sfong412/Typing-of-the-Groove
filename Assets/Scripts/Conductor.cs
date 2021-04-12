@@ -74,6 +74,8 @@ public class Conductor : MonoBehaviour
 
     public EnvironmentController environment;
 
+    public CameraController camera;
+
     Scene scene;
 
     //fix song loading thing

@@ -47,6 +47,11 @@ public class SongMetadata : MonoBehaviour
     // C# song path thingy
     public string songPath;
 
+    public static float[] cam_center_near;
+    public static float[] cam_center_far;
+    public static float[] cam_low_left_near;
+    public static float[] cam_low_right_near;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +85,11 @@ public class SongMetadata : MonoBehaviour
         playStart = song.e_playStart;
         playEnd = song.e_playEnd;
         songEnd = song.e_songEnd;
+
+        cam_center_near = song.cam_center_near;
+        cam_center_far = song.cam_center_far;
+        cam_low_left_near = song.cam_low_left_near;
+        cam_low_right_near = song.cam_low_right_near;
     }
 
     public float getPlayStart()
@@ -126,5 +136,13 @@ public class SongMetadata : MonoBehaviour
 
         //
         public float e_songEnd;
+
+        public float[] cam_center_near;
+
+        public float[] cam_center_far;
+
+        public float[] cam_low_left_near;
+
+        public float[] cam_low_right_near;
     }
 }

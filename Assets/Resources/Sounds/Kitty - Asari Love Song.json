@@ -12,5 +12,10 @@
   "e_songStart": 0,
   "e_playStart": 32,
   "e_playEnd": 304,
-  "e_songEnd": 320
+  "e_songEnd": 320,
+
+  "cam_center_near": [0, 8],
+  "cam_center_far": [32],
+  "cam_low_left_near": [36],
+  "cam_low_right_near": []
 }

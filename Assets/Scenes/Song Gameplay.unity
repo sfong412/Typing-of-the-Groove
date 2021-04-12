@@ -1594,9 +1594,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5bf6d77c5115b46b1d232b9afac827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  songData: {fileID: 1631400280}
   mainCamera: {fileID: 963194227}
   orbitCamera: {fileID: 1579737200}
   avatar: {fileID: 1595828287}
+  conductor: {fileID: 1631400278}
+  setPosition: 
+  cameraIsMoving: 0
 --- !u!1 &886801349
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,6 +3093,7 @@ MonoBehaviour:
   wordManager: {fileID: 1925433134}
   ui: {fileID: 1690692733}
   environment: {fileID: 1378223149}
+  camera: {fileID: 879077036}
 --- !u!4 &1631400279
 Transform:
   m_ObjectHideFlags: 0
