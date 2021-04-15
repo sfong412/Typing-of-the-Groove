@@ -17,5 +17,6 @@
   "cam_center_near": [0, 8, 42],
   "cam_center_far": [4, 12],
   "cam_low_left_near": [36],
-  "cam_low_right_near": [40, 48]
+  "cam_low_right_near": [40, 48],
+  "cam_spin": []
 }

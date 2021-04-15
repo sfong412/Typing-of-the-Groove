@@ -132,7 +132,6 @@ public class Conductor : MonoBehaviour
         {
             completedBeats++;
             environment.onFinishLoop();
-            Debug.Log("beat");
         }
 
         //calculate the loop position

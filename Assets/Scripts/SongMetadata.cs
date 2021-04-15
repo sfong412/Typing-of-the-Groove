@@ -51,6 +51,15 @@ public class SongMetadata : MonoBehaviour
     public static float[] cam_center_far;
     public static float[] cam_low_left_near;
     public static float[] cam_low_right_near;
+    public static float[] cam_spin;
+    public static float[] cam_spin_ccw;
+
+    public static float[] cam_center_near_snap;
+    public static float[] cam_center_far_snap;
+    public static float[] cam_low_left_near_snap;
+    public static float[] cam_low_right_near_snap;
+    public static float[] cam_spin_snap;
+    public static float[] cam_spin_snap_ccw;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +99,15 @@ public class SongMetadata : MonoBehaviour
         cam_center_far = song.cam_center_far;
         cam_low_left_near = song.cam_low_left_near;
         cam_low_right_near = song.cam_low_right_near;
+        cam_spin = song.cam_spin;
+        cam_spin_ccw = song.cam_spin_ccw;
+
+        cam_center_near_snap = song.cam_center_near_snap;
+        cam_center_far_snap = song.cam_center_far_snap;
+        cam_low_left_near_snap = song.cam_low_left_near_snap;
+        cam_low_right_near_snap = song.cam_low_right_near_snap;
+        cam_spin_snap = song.cam_spin_snap;
+        cam_spin_snap_ccw = song.cam_spin_snap_ccw;
     }
 
     public float getPlayStart()
@@ -144,5 +162,21 @@ public class SongMetadata : MonoBehaviour
         public float[] cam_low_left_near;
 
         public float[] cam_low_right_near;
+
+        public float[] cam_spin;
+
+        public float[] cam_spin_ccw;
+
+        public float[] cam_center_near_snap;
+
+        public float[] cam_center_far_snap;
+
+        public float[] cam_low_left_near_snap;
+
+        public float[] cam_low_right_near_snap;
+
+        public float[] cam_spin_snap;
+
+        public float[] cam_spin_snap_ccw;
     }
 }
