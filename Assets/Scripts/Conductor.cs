@@ -33,10 +33,10 @@ public class Conductor : MonoBehaviour
     //The offset to the first beat of the song in seconds
     public float firstBeatOffset;
 
-    float songStartEvent;
-    float playStartEvent;
-    float songEndEvent;
-    float playEndEvent;
+    public float songStartEvent;
+    public float playStartEvent;
+    public float songEndEvent;
+    public float playEndEvent;
 
     //the number of beats in each loop
     public float beatsPerLoop;

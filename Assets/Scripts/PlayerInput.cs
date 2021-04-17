@@ -183,7 +183,7 @@ public class PlayerInput : MonoBehaviour
             {
                 callHitFail();
             }
-        else if (isLevelingUp() == true)
+        else if (isLevelingUp() == true && conductor.completedBeats < conductor.playEndEvent)
             {
                 setPlayableState();
                 comboCounter = 1;

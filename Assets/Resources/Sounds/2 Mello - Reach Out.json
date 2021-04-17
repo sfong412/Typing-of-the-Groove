@@ -14,9 +14,17 @@
   "e_playEnd": 316,
   "e_songEnd": 332,
 
-  "cam_center_near": [0, 8, 42],
-  "cam_center_far": [4, 12],
-  "cam_low_left_near": [36],
-  "cam_low_right_near": [40, 48],
-  "cam_spin": []
+  "cam_center_near": [0, 72, 160, 224],
+  "cam_center_far": [192, 304],
+  "cam_low_left_near": [40],
+  "cam_low_right_near": [56],
+  "cam_spin": [],
+  "cam_spin_ccw": [],
+
+  "cam_center_near_snap": [],
+  "cam_center_far_snap": [],
+  "cam_low_left_near_snap": [],
+  "cam_low_right_near_snap": [],
+  "cam_spin_snap": [96],
+  "cam_spin_snap_ccw": [256]
 }

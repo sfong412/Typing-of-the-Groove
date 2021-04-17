@@ -138,7 +138,7 @@ public class CameraController : MonoBehaviour
 
         if (position == "low_right_near")
         {
-            targetCameraPosition.Set(1.9f, -6.66f, -10.1f);
+            targetCameraPosition.Set(-0.4f, -6.66f, -10.1f);
             targetCameraRotation = Quaternion.Euler(-14f, -15, 0);
         }
 

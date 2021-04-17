@@ -47,37 +47,37 @@ public class WordGenerator : MonoBehaviour
             case 1:
                 if (i == 1)
                 {
-                    int[] selectDifficulty = {1, 2};
+                    int[] selectDifficulty = {1};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 else if (i == 2)
                 {
-                    int[] selectDifficulty = {1, 2, 3};
+                    int[] selectDifficulty = {1, 2};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 else if (i == 3)
                 {
-                    int[] selectDifficulty = {1, 2, 3, 4};
+                    int[] selectDifficulty = {1, 2, 3};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 else if (i == 4)
                 {
-                    int[] selectDifficulty = {2, 3, 4};
+                    int[] selectDifficulty = {1, 2, 3};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 else if (i == 5)
                 {
-                    int[] selectDifficulty = {2, 3, 4, 5};
+                    int[] selectDifficulty = {2, 3};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 else if (i == 6)
                 {
-                    int[] selectDifficulty = {3, 4, 5};
+                    int[] selectDifficulty = {2, 3};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 else if (i > 6)
                 {
-                    int[] selectDifficulty = {3, 4, 5, 6};
+                    int[] selectDifficulty = {2, 3, 4};
                     selector = selectDifficulty[Random.Range(0, selectDifficulty.Length)];
                 }
                 break;
