@@ -571,6 +571,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -713,8 +717,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -866,6 +870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd04a9b00dffe34b9d0b1ecab57afbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 0}
+  songTitle: {fileID: 0}
   gameDifficultyText: {fileID: 1069061863}
   showBeatIndicatorText: {fileID: 1380693161}
 --- !u!1001 &387427138
@@ -1434,6 +1440,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1577,7 +1587,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1805,8 +1815,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2036,6 +2046,7 @@ MonoBehaviour:
   conductor: {fileID: 0}
   highScoreDisplay: {fileID: 1700368051}
   jsonFile: 
+  currentlySelectedSong: 
 --- !u!4 &884864338
 Transform:
   m_ObjectHideFlags: 0
@@ -2068,6 +2079,10 @@ PrefabInstance:
     - target: {fileID: 8778385549784012147, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2239,8 +2254,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2737,8 +2752,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2901,6 +2916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd04a9b00dffe34b9d0b1ecab57afbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 884864337}
+  songTitle: {fileID: 0}
   gameDifficultyText: {fileID: 767766018}
   showBeatIndicatorText: {fileID: 1380693161}
 --- !u!1 &1175425984 stripped
@@ -3206,7 +3223,7 @@ PrefabInstance:
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 208051947}
+      objectReference: {fileID: 1160892827}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -3217,7 +3234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: setGameDifficulty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3225,7 +3242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Settings, Assembly-CSharp
+      value: UnityEngine.MonoBehaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -3566,7 +3583,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Typing of the Groove (Prototype)
+  m_text: Typing of the Groove
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
   m_sharedMaterial: {fileID: -2984287126821337088, guid: 0e81e43971475d34a927f9a1a89c376e, type: 2}
@@ -3709,8 +3726,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4187,6 +4204,10 @@ MonoBehaviour:
   songPositionInMeasures: 0
   dspSongTime: 0
   firstBeatOffset: 0
+  songStartEvent: 0
+  playStartEvent: 0
+  songEndEvent: 0
+  playEndEvent: 0
   beatsPerLoop: 0
   completedBeats: 0
   completedLoops: 0
@@ -4614,8 +4635,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4692,6 +4713,14 @@ PrefabInstance:
     - target: {fileID: 8778385549784012145, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_Text
       value: Bust a Groove OST - Kitty N
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778385549973763157, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8778385549973763158, guid: 8f19abf10710dea489f11d58dcb0ded0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

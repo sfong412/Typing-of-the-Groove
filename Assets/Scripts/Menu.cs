@@ -22,6 +22,8 @@ public class Menu : MonoBehaviour
     //location of song's jsonFile metadata
     public string jsonFile;
 
+    public string currentlySelectedSong;
+
    // public SongInfo song;
 
     // Start is called before the first frame update

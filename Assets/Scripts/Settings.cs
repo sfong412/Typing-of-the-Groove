@@ -5,7 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 public class Settings : MonoBehaviour
-{
+{    
+    public Menu menu;
+    public TextMeshProUGUI songTitle;
     public TextMeshProUGUI gameDifficultyText;
     public static int gameDifficulty = 1;
 
@@ -67,8 +69,8 @@ public class Settings : MonoBehaviour
                 gameDifficultyText.text = "Easy";
                 break;
         }
-        Debug.Log(gameDifficulty);
         saveSettings();
+        menu.highScoreDisplay.text = menu.currentlySelectedSong  + "\n Difficulty: " + gameDifficultyText.text + "\n High score: " + showHighScore(menu.currentlySelectedSong, Settings.gameDifficulty).ToString();
     }
 
     public void setBeatIndicator()
@@ -117,4 +119,32 @@ public class Settings : MonoBehaviour
         }
     }
     
+    public int showHighScore(string songName, int currentDifficulty)
+    {
+        string difficulty = "";
+
+        if (currentDifficulty == 1)
+        {
+            difficulty = "easy_";
+        }
+        else if (currentDifficulty == 2)
+        {
+            difficulty = "normal_";
+        }
+        else if (currentDifficulty == 3)
+        {
+            difficulty = "hard_";
+        }
+
+        string key = "score_" + difficulty + songName;
+
+        if (PlayerPrefs.HasKey(key))
+        {
+            return PlayerPrefs.GetInt(key);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
