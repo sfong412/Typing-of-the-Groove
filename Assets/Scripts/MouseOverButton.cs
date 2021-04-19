@@ -23,9 +23,10 @@ public class MouseOverButton : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        menu.highScoreDisplay.text = songTitle.text  + "\n Difficulty: " + settings.gameDifficultyText.text + "\n High score: " + showHighScore(songTitle.text, Settings.gameDifficulty).ToString();
-        // Debug.Log(menu.highScoreDisplay.text);
-        menu.currentlySelectedSong = songTitle.text;
+        SongMetadata.ReadSongJSON(songTitle.text);
+        SongMetadata.UpdateSongInfo();
+
+        menu.highScoreDisplay.text = SongMetadata.artist + " - " + SongMetadata.title  + "\n Difficulty: " + settings.gameDifficultyText.text + "\n High score: " + showHighScore(SongMetadata.fileName, Settings.gameDifficulty).ToString() + "\n \n BPM: " + SongMetadata.bpm + "\n Genre: " + SongMetadata.genre;
     }
 
     public int showHighScore(string songName, int currentDifficulty)

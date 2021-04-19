@@ -129,12 +129,6 @@ public class Menu : MonoBehaviour
         }
     }
 
-    string songFile(string songName)
-    {
-        string path = Application.streamingAssetsPath + "/" + songName + ".json";
-        return path;
-    }
-
     public void QuitGame()
     {
         Resources.UnloadUnusedAssets();

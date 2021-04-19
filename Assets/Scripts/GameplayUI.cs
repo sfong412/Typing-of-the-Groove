@@ -386,8 +386,9 @@ public class GameplayUI : MonoBehaviour
         return;
     }
 
-    public void showReadyText(int opacity)
+    public void showReadyText(int opacity, string text)
     {
+        readyText.text = text;
         readyText.color = new Color(readyText.color.r, readyText.color.g, readyText.color.b, opacity);
     }
 }

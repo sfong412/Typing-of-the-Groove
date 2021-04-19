@@ -70,7 +70,11 @@ public class Settings : MonoBehaviour
                 break;
         }
         saveSettings();
-        menu.highScoreDisplay.text = menu.currentlySelectedSong  + "\n Difficulty: " + gameDifficultyText.text + "\n High score: " + showHighScore(menu.currentlySelectedSong, Settings.gameDifficulty).ToString();
+
+        if (SongMetadata.fileName != "")
+        {
+            menu.highScoreDisplay.text = SongMetadata.artist + " - " + SongMetadata.title  + "\n Difficulty: " + gameDifficultyText.text + "\n High score: " + showHighScore(SongMetadata.fileName, Settings.gameDifficulty).ToString() + "\n \n BPM: " + SongMetadata.bpm + "\n Genre: " + SongMetadata.genre;
+        }
     }
 
     public void setBeatIndicator()

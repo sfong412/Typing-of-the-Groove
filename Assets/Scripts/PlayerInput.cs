@@ -31,7 +31,7 @@ public class PlayerInput : MonoBehaviour
     public int comboCounter;
 
     //Score distribution based on player's combo counter
-    private int[] scoreBasedOnCombo = 
+    private int[] scoreBasedOnCombo =
     {
         0,
         10,
@@ -68,7 +68,7 @@ public class PlayerInput : MonoBehaviour
     //Keeps track of failed button inputs in a beat
     public int failCounter;
 
-   // private bool isCombo;
+    // private bool isCombo;
 
     public static Conductor conductor;
 
@@ -99,7 +99,7 @@ public class PlayerInput : MonoBehaviour
         myHitStatus = hitStatus.hitNotDone;
 
         score = 0;
-        
+
         power = 0;
 
         difficultyLevel = 1;
@@ -118,25 +118,43 @@ public class PlayerInput : MonoBehaviour
         {
             foreach (char letter in Input.inputString)
             {
-                DetectHit(letter);
+                if (char.IsUpper(letter) == true)
+                {
+                    char convertedLetter = char.ToLower(letter);
+                    DetectHit(convertedLetter);
+                    Debug.Log(convertedLetter);
+                }
+                else if (char.IsUpper(letter) == false)
+                {
+                    DetectHit(letter);
+                    Debug.Log(letter);
+                }
 
                 if (myHitStatus != hitStatus.hitFail)
                 {
-                    wordManager.typeLetter(letter);
+                    if (char.IsUpper(letter) == true)
+                    {
+                        char convertedLetter = char.ToLower(letter);
+                        wordManager.typeLetter(convertedLetter);
+                    }
+                    else if (char.IsUpper(letter) == false)
+                    {
+                        wordManager.typeLetter(letter);
+                    }
                 }
-                Debug.Log(isLevelingUp() + " " + comboCounter.ToString() + " Difficulty: " + WordGenerator.wordDifficulty);
+
             }
         }
         menuButton();
     }
 
-    void DetectHit(char c) 
+    void DetectHit(char c)
     {
         if (wordManager.words.Count == 0 && c == beatLetter && conductor.loopPositionInBeats > minHitRange && conductor.loopPositionInBeats < maxHitRange && myHitStatus == hitStatus.hitNotDone)
-        {   
+        {
             myHitStatus = hitStatus.hitPass;
             ui.changeLetterColor();
-        } 
+        }
         else
         {
             if (failCounter < 5 && wordManager.words.Count == 0)
@@ -150,7 +168,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void hitFail() 
+    void hitFail()
     {
         if (failCounter < 5 && wordManager.words.Count != 0)
         {
@@ -169,26 +187,26 @@ public class PlayerInput : MonoBehaviour
         ui.redLetterValue = 0;
 
         if (myHitStatus == hitStatus.hitPass && isLevelingUp() == false)
-            {
-                callHitSuccess();
+        {
+            callHitSuccess();
 
-                if (comboCounter == 9)
-                {
-                    unsetPlayableState();
-                }
+            if (comboCounter == 9)
+            {
+                unsetPlayableState();
+            }
 
             score = score + (scoreBasedOnCombo[comboCounter] * scoreMultiplier[setMultiplier(WordGenerator.wordDifficulty)]);
-            } 
+        }
         else if (myHitStatus != hitStatus.hitPass && isLevelingUp() == false)
-            {
-                callHitFail();
-            }
+        {
+            callHitFail();
+        }
         else if (isLevelingUp() == true && conductor.completedBeats < conductor.playEndEvent)
-            {
-                setPlayableState();
-                comboCounter = 1;
-            }
-     }
+        {
+            setPlayableState();
+            comboCounter = 1;
+        }
+    }
 
     void setHitRange()
     {
@@ -203,10 +221,10 @@ public class PlayerInput : MonoBehaviour
             myHitStatus = hitStatus.hitNotDone;
             failCounter = 0;
             comboCounter = comboCounter + 1;
-            if (comboCounter == 10) 
+            if (comboCounter == 10)
             {
                 comboCounter = 1;
-            }   
+            }
             ui.onHitSuccess();
             dancer.onHitSuccess();
         }
@@ -266,7 +284,7 @@ public class PlayerInput : MonoBehaviour
     public void setPlayableState()
     {
         playableState = true;
-        ui.showReadyText(0);
+        ui.showReadyText(0, "");
     }
 
     public void unsetPlayableState()

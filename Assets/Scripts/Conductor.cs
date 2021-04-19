@@ -56,6 +56,9 @@ public class Conductor : MonoBehaviour
 
     public float beatPosition;
 
+    public float countdownUntilPlayStart;
+    bool isCountingUntilStart;
+
     //Conductor instance
     //public static Conductor conductor;
 
@@ -107,6 +110,8 @@ public class Conductor : MonoBehaviour
         //Calculate the number of seconds in each measure
         secPerMeasure = secPerBeat / beatsPerLoop;
 
+        isCountingUntilStart = false;
+
         StartCoroutine(countDown());
     }
     
@@ -131,6 +136,20 @@ public class Conductor : MonoBehaviour
         if (songPositionInBeats >= (completedBeats + 1))
         {
             completedBeats++;
+
+            if (isCountingUntilStart == true)
+            {
+                countdownUntilPlayStart = countdownUntilPlayStart - 1;
+                if (countdownUntilPlayStart > 0)
+                {
+                    ui.showReadyText(1, countdownUntilPlayStart.ToString());
+                }
+                else if (countdownUntilPlayStart == 0)
+                {
+                    ui.showReadyText(1, "Go!");
+                }
+            }
+
             environment.onFinishLoop();
         }
 
@@ -172,7 +191,7 @@ public class Conductor : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         startMusic();
-        ui.showReadyText(1);
+        ui.showReadyText(1, "Ready?");
     }
 
     public static void setFileName(string _fileName)
@@ -184,6 +203,7 @@ public class Conductor : MonoBehaviour
     {
         songBpm = SongMetadata.bpm;
         beatsPerLoop = SongMetadata.beats;
+        countdownUntilPlayStart = beatsPerLoop;
         songClip = Resources.Load<AudioClip>("Sounds/" + loadedSongFile);
         musicSource.clip = songClip;
 
@@ -196,11 +216,23 @@ public class Conductor : MonoBehaviour
 
     void checkEvents()
     {
+        //start countdown
+        if (completedBeats == (playStartEvent - (beatsPerLoop + 1)) && countdownUntilPlayStart >= 0)
+        {
+            isCountingUntilStart = true;
+        }
+        else if (countdownUntilPlayStart < 0)
+        {
+            isCountingUntilStart = false;
+        }
+
         //song starts
         if (completedBeats == playStartEvent)
         {
             p1.setPlayableState();
+            isCountingUntilStart = false;
         }
+
 
         //song ends
         if (completedBeats == playEndEvent)
