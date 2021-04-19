@@ -98,7 +98,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Angle_Offset: 1.83
-    - Cell_Density: 1.1971238
+    - Cell_Density: 1.2818907
     - Vector1_21a21e313cca4ca3b609ccb72365e70e: 2.45
     - Vector1_a4129bc0a0074a13a18731913bf55870: 5.53
     - _AlphaClip: 0

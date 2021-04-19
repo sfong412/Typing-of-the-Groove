@@ -174,6 +174,7 @@ public class Conductor : MonoBehaviour
         dspSongTime = (float)AudioSettings.dspTime;
 
         musicSource.Play();
+        ui.crowdSfxSource.Play();
 
         if (musicSource.isPlaying == true)
         {

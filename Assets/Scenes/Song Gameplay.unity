@@ -3093,6 +3093,7 @@ MonoBehaviour:
   loopPositionInBeats: 0
   loopPositionInAnalog: 0
   beatPosition: 0
+  countdownUntilPlayStart: 0
   musicSource: {fileID: 1631400277}
   p1: {fileID: 0}
   wordManager: {fileID: 1925433134}
@@ -8273,7 +8274,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4701837685029111537, guid: bd9d4d3084b86bf43bcd2d1e11a84e80, type: 2}
   m_audioClip: {fileID: 8300000, guid: e54d4682da99bc94bb2849fd7f8561a2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

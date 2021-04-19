@@ -97,8 +97,7 @@ public class GameplayUI : MonoBehaviour
         redWordValue = 0;
         redLetterValue = 0;
 
-        crowdSfxSource.volume = 0;
-        crowdSfxSource.Play();
+        crowdSfxSource.volume = 0.2f;
 
         //wip - for dynamic time signature keyPress threshold thing
         beats = new int[(int)conductor.beatsPerLoop];
@@ -245,7 +244,7 @@ public class GameplayUI : MonoBehaviour
             hitStatusText.text = "Great!";
         }
 
-        if (p1.comboCounter == 5)
+        if (p1.comboCounter == 7)
         {
             StopCoroutine(changeCrowdVolume(0.5f, crowdSfxSource, 2));
             StartCoroutine(changeCrowdVolume(0.5f, crowdSfxSource, 1));
@@ -298,8 +297,8 @@ public class GameplayUI : MonoBehaviour
         {
             case 1:
             {
-                a.volume = 0;
-                while (a.volume < 0.2f)
+                a.volume = 0.2f;
+                while (a.volume < 0.45f)
                 {
                     a.volume = a.volume + (Time.deltaTime * t);
                     yield return null;
@@ -308,7 +307,7 @@ public class GameplayUI : MonoBehaviour
             }
             case 2:
             {
-                while (a.volume > 0f)
+                while (a.volume > 0.2f)
                 {
                     a.volume = a.volume - (Time.deltaTime * t);
                     yield return null;
