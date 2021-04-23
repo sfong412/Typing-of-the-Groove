@@ -210,8 +210,8 @@ public class PlayerInput : MonoBehaviour
 
     void setHitRange()
     {
-        minHitRange = 2.8f;
-        maxHitRange = 3.2f;
+        minHitRange = 2.75f;
+        maxHitRange = 3.25f;
     }
 
     void callHitSuccess()
@@ -268,7 +268,7 @@ public class PlayerInput : MonoBehaviour
 
     void menuButton()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) & conductor.completedBeats < conductor.playEndEvent)
         {
             goToMenu();
         }
