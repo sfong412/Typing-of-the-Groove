@@ -8,7 +8,7 @@ Avatar & dance animations by Kevin Iglesias.
 
 Made with Unity. The code is kind of a mess but feel free to mess around with the source code!
 
-Songs used:
+# Songs used:
 
 - Reach Out by 2 Mello
   - https://2mellomakes.bandcamp.com/album/memories-of-tokyo-to
@@ -19,3 +19,8 @@ Songs used:
 - Memory Dragon by supermelon-creations
   - https://www.newgrounds.com/audio/listen/1006660
   - Used with permission
+
+# Download:
+
+You can download the Windows build on itch.io.
+  - https://shermsoundguy.itch.io/typing-of-the-groove
