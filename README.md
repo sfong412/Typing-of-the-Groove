@@ -1,4 +1,4 @@
-# Typing-of-the-Groove
+# Typing of the Groove
 
 A small rhythm game inspired by the Bust-a-Groove series & the Typing of the Dead series. Use your keyboard to type the required randomly-generated word before pressing the generated letter on the fourth beats of a song.
 
