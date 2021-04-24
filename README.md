@@ -1,6 +1,6 @@
 # Typing of the Groove
 
-A small rhythm game inspired by the Bust-a-Groove series & the Typing of the Dead series. Use your keyboard to type the required randomly-generated word before pressing the generated letter on the fourth beats of a song.
+A small rhythm game inspired by the Bust-a-Groove series & the Typing of the Dead series. Use your keyboard to type the required randomly-generated word before pressing the generated letter on each consecutive fourth beat of a song.
 
 Programming, design, graphics & menu music by Sherman Fong.
 
