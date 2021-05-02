@@ -1348,6 +1348,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: f738ee3ecdc05594c99316c4b42edbc0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 336aaf0c4567ba546831d47ca308f90a, type: 3}
+--- !u!4 &700664618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 700664617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,7 +2092,7 @@ MonoBehaviour:
   m_ScaleFactor: 2
   m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.15
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2141,7 +2146,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1857003705}
+  - {fileID: 700664618}
   - {fileID: 1595828290}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -8398,11 +8403,6 @@ MonoBehaviour:
   currentState: 0
   idleState: 2081823275
   danceState: 0
---- !u!4 &1857003705 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 336aaf0c4567ba546831d47ca308f90a, type: 3}
-  m_PrefabInstance: {fileID: 700664617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1866370557 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8900364932305318668, guid: 896c8148d7badf04092be620e30d7f85, type: 3}
@@ -8626,7 +8626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   words: []
-  wordSpawner: {fileID: 0}
   gameplayUI: {fileID: 1690692733}
   playerInput: {fileID: 461438265}
   activeLetter: 0
