@@ -46,6 +46,18 @@ public class Menu : MonoBehaviour
         
     }
 
+    void pressEscapeKey()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) & MenuPanel.activeInHierarchy == true)
+        {
+            QuitGame();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) & MenuPanel.activeInHierarchy == false)
+        {
+            ShowMenuPanel();
+        }
+    }
+
     void MouseEnterEvent()
     {
         //If your mouse hovers over the GameObject with the script attached, output this message

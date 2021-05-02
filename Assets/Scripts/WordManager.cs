@@ -7,8 +7,6 @@ public class WordManager : MonoBehaviour
 
     public List<Word> words;
 
-    public WordSpawner wordSpawner;
-
     //ui stuff
     public GameplayUI gameplayUI;
 
